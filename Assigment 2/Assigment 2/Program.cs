@@ -62,8 +62,14 @@ namespace Assigment_2
 
         public static double Divide(double a, double b)
         {
-            double result = a / b;
-            return result;
+            if (b != 0)
+        {
+            return a / b;
+        }
+        else
+        {
+            throw new DivideByZeroException();
+        }
         }
         public static void DisplayModel()
         {
