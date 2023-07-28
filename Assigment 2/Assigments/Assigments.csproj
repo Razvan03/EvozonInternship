@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8319F03-7CB1-4B6A-AED5-2E5266B3CBA6}</ProjectGuid>
+    <ProjectGuid>{49B299A7-B3CC-45ED-9A89-917739F6B478}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Assigment_1</RootNamespace>
-    <AssemblyName>Assigment 1</AssemblyName>
+    <RootNamespace>Assigments</RootNamespace>
+    <AssemblyName>Assigments</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Read.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

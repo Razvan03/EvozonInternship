@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assigment_1
+namespace Assigments
 {
     internal class Program
     {
@@ -12,9 +12,9 @@ namespace Assigment_1
         {
             Console.WriteLine("Hello");
             Console.WriteLine("Razvan");
-            
+
             Console.WriteLine("5 + 3 = " + (5 + 3));
-            
+
             Console.WriteLine("10 / 3 = " + ((double)10 / 3));
 
             Console.WriteLine("-5 + 8 * 6 = " + (-5 + 8 * 6));
