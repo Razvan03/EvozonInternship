@@ -1,8 +1,0 @@
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\obj\Debug\Assigment 2.csproj.AssemblyReference.cache
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\obj\Debug\Assigment 2.csproj.SuggestedBindingRedirects.cache
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\obj\Debug\Assigment 2.csproj.CoreCompileInputs.cache
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\bin\Debug\Assigment 2.exe.config
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\bin\Debug\Assigment 2.exe
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\bin\Debug\Assigment 2.pdb
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\obj\Debug\Assigment 2.exe
-D:\Evozon\Day 9 (C#)\Assigment 2\Assigment 2\obj\Debug\Assigment 2.pdb
