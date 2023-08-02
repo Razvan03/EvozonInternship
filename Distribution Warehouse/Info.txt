@@ -1,0 +1,12 @@
+To execute the program, create an instance of the Warehouse class, call the GeneratePackages method to generate random storage packages, and then call the SaveToDisk method to save the warehouse data to a file. Here's an example:
+
+C#
+var warehouse = new Warehouse();
+warehouse.GeneratePackages();
+warehouse.SaveToDisk("warehouse.dat");
+
+To load the data back from the file, call the LoadFromDisk method:
+
+C#
+var warehouse = new Warehouse();
+warehouse.LoadFromDisk("warehouse.dat");
