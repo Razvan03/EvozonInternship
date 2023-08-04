@@ -6,46 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Automation.Helpers;
 
 /*[assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]*/
 namespace Automation.Tests
 {
     [TestClass]
-    public class Register
+    public class Register : BaseTest
     {
         [TestMethod]
         public void RegisterTest()
         {
-            WebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://qa3magento.dev.evozon.com/");
-            driver.FindElement(By.CssSelector("a.skip-link.skip-account")).Click(); //Account button
-            driver.FindElement(By.CssSelector("a[title=\"Register\"]")).Click(); //Register Button
+            Pages.HomePage.GoToRegisterPage();
 
-            var firstName = Faker.Name.First();
-            var middleName = Faker.Name.Middle();
-            var lastName = Faker.Name.Last();
-            var emailAddress = Faker.Internet.Email();
+            Pages.RegisterPage.InsertCredentials();
 
-            driver.FindElement(By.Id("firstname")).SendKeys(firstName);
-            driver.FindElement(By.Id("middlename")).SendKeys(middleName);
-            driver.FindElement(By.Id("lastname")).SendKeys(lastName);
-            driver.FindElement(By.Id("email_address")).SendKeys(emailAddress);
-            driver.FindElement(By.Id("password")).SendKeys(lastName);
-            driver.FindElement(By.Id("confirmation")).SendKeys(lastName);
-            driver.FindElement(By.CssSelector("label[for=\"is_subscribed\"]")).Click(); //Checkbox
+            Pages.RegisterPage.SubmitRegister();
 
-            driver.FindElement(By.CssSelector("button[title=\"Register\"]")).Click(); //Submit register
-
-            var welcomeText = driver.FindElement(By.CssSelector("p.hello strong")).Text; //Welcome Text
-
-            var helloText = "Hello, " + firstName + " " + middleName + " " + lastName + "!";
-
-            welcomeText.Should().Be(helloText);
-            Assert.AreEqual(helloText, welcomeText);
-
-            driver.Close();
+            Pages.RegisterPage.IsUserRegistered().Should().BeTrue();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Automation.Tests
 
             Pages.LoginPage.SubmitLogin();
 
-            Pages.LoginPage.isUserLoggedIn().Should().BeTrue();
+            Pages.LoginPage.IsUserLoggedIn().Should().BeTrue();
 
         }
     }

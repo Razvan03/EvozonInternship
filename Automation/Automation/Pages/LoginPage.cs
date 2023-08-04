@@ -10,7 +10,7 @@ namespace Automation.Pages
 {
     public class LoginPage
     {
-        #region
+        #region Selectors
 
         private readonly By _emailField = By.Id("email");
         private readonly By _passwordField = By.Id("pass");
@@ -29,7 +29,7 @@ namespace Automation.Pages
             Browser.GetDriver().FindElement(_loginButton).Click();
         }
 
-        public bool isUserLoggedIn()
+        public bool IsUserLoggedIn()
         {
             return Browser.GetDriver().FindElement(_welcomeText).Text == Constants.myWelcomeText;
         }

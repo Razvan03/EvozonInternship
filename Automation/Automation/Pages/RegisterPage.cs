@@ -8,9 +8,9 @@ using OpenQA.Selenium;
 
 namespace Automation.Pages
 {
-    internal class RegisterPage
+    public class RegisterPage
     {
-        #region
+        #region Selectors
 
         private readonly By _firstNameField = By.Id("firstname");
         private readonly By _middleNameField = By.Id("middlename");
@@ -24,6 +24,33 @@ namespace Automation.Pages
 
         #endregion
 
+        public static string firstName = Faker.Name.First();
+        public static string middleName = Faker.Name.Middle();
+        public static string lastName = Faker.Name.Last();
+        public static string emailAddress = Faker.Internet.Email();
+        public static string helloText = "Hello, " + firstName + " " + middleName + " " + lastName + "!";
 
+        public void InsertCredentials()
+        {
+            
+
+            Browser.GetDriver().FindElement(_firstNameField).SendKeys(firstName);
+            Browser.GetDriver().FindElement(_middleNameField).SendKeys(middleName);
+            Browser.GetDriver().FindElement(_lastNameField).SendKeys(lastName);
+            Browser.GetDriver().FindElement(_emailField).SendKeys(emailAddress);
+            Browser.GetDriver().FindElement(_passwordField).SendKeys(lastName);
+            Browser.GetDriver().FindElement(_confirmPasswordField).SendKeys(lastName);
+            Browser.GetDriver().FindElement(_newsletterCheckbox).Click();
+        }
+
+        public void SubmitRegister()
+        {
+            Browser.GetDriver().FindElement(_registerButton).Click();
+        }
+
+        public bool IsUserRegistered()
+        {
+            return Browser.GetDriver().FindElement(_welcomeText).Text == helloText;
+        }
     }
 }

@@ -26,5 +26,11 @@ namespace Automation.Pages
             //WaitHelpers.ExplicitWait();
         }
 
+        public void GoToRegisterPage()
+        {
+            Browser.GetDriver().FindElement(_accountButton).Click();
+            Browser.GetDriver().FindElement(_toRegisterButton).Click();
+        }
+
     }
 }
