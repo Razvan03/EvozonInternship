@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: Parallelize(Workers = 4,
-    Scope = ExecutionScope.MethodLevel)]
+/*[assembly: Parallelize(Workers = 4,
+    Scope = ExecutionScope.MethodLevel)]*/
 namespace Automation.Tests
 {
     [TestClass]
