@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium.Chrome;
+using FluentAssertions;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
