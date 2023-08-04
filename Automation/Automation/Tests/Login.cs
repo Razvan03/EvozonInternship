@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Automation
+[assembly: Parallelize(Workers = 4,
+    Scope = ExecutionScope.MethodLevel)]
+namespace Automation.Tests
 {
     [TestClass]
-    internal class Login
+    public class Login
     {
         [TestMethod]
         public void LoginTest()
@@ -18,15 +20,14 @@ namespace Automation
             WebDriver driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://qa3magento.dev.evozon.com/");
-            driver.FindElement(By.CssSelector("#header > div > div.skip-links > div > a > span.label")).Click(); //Account button
-            driver.FindElement(By.CssSelector("#header-account > div > ul > li.last > a")).Click(); //Login Button
+            driver.FindElement(By.CssSelector("a.skip-link.skip-account")).Click(); //Account button
+            driver.FindElement(By.CssSelector("a[title=\"Log In\"]")).Click(); //Login Button  
             driver.FindElement(By.Id("email")).SendKeys("roman_razvan03@yahoo.com");
             driver.FindElement(By.Id("pass")).SendKeys("tester1");
             driver.FindElement(By.Id("send2")).Click(); //Login submit
-            String welcomeText = driver.FindElement(By.CssSelector("body > div > div.page > div.main-container.col2-left-layout > div > div.col-main > div.my-account > div > div.welcome-msg > p.hello > strong")).Text; //Hello Text
-
-            welcomeText.Should().Be("Hello, Roman Razvan!");
-
+            var welcomeText = driver.FindElement(By.CssSelector("p.hello strong")).Text; //Hello Text
+            //welcomeText.Should().Be("Hello, Roman Razvan!");
+            Assert.AreEqual("Hello, Roman Razvan!", welcomeText);
             driver.Close();
         }
     }
