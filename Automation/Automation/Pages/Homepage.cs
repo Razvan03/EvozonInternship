@@ -16,6 +16,7 @@ namespace Automation.Pages
         private readonly By _accountButton = By.CssSelector("a.skip-link.skip-account");
         private readonly By _toLoginButton = By.CssSelector("a[title=\"Log In\"]");
         private readonly By _toRegisterButton = By.CssSelector("a[title=\"Register\"]");
+        private readonly By _privateSalesButton = By.CssSelector("img[alt =\"Shop Private Sales - Members Only\"]");
 
         #endregion
 
@@ -30,6 +31,16 @@ namespace Automation.Pages
         {
             Browser.GetDriver().FindElement(_accountButton).Click();
             Browser.GetDriver().FindElement(_toRegisterButton).Click();
+        }
+
+        public void GoToHomepage()
+        {
+            Browser.GetDriver().FindElement(_homeLogoButton).Click();
+        }
+
+        public void GoToPrivateSales()
+        {
+            Browser.GetDriver().FindElement(_privateSalesButton).Click();
         }
 
     }

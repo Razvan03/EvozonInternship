@@ -17,6 +17,7 @@ namespace Automation.Tests
         public static LoginPage LoginPage => InitPage(new LoginPage());
 
         public static RegisterPage RegisterPage => InitPage(new RegisterPage());
+        public static PrivateSalesPage PrivateSalesPage => InitPage(new PrivateSalesPage());
         public static T InitPage<T>(T page)
         {
             PageFactory.InitElements(Browser.GetDriver(), page);
