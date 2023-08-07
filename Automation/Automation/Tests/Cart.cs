@@ -21,22 +21,18 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
-            WebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://qa3magento.dev.evozon.com/");
-            driver.FindElement(By.CssSelector("h3.product-name a[title=\"Chelsea Tee\"]")).Click(); //CHELSEA TEE product from HomePage
-            driver.FindElement(By.Id("swatch27")).Click(); //Color blue
-            driver.FindElement(By.Id("swatch79")).Click(); //Size M
-            driver.FindElement(By.Id("qty")).Clear();
-            driver.FindElement(By.Id("qty")).SendKeys("2"); //Quantity
-            var product = driver.FindElement(By.CssSelector("div.product-name h1")).GetAttribute("innerText"); //.Text didn't work
-            driver.FindElement(By.CssSelector("button.button.btn-cart[onclick]")).Click(); //Add to cart button
+            Pages.HomePage.GoToConfigurableProduct();
 
-            var message = driver.FindElement(By.CssSelector("li.success-msg span")).Text;
+            Pages.ProductDetailPage.ChangeQty();
 
-            message.Should().Contain(product);
-            Assert.AreEqual(product, message);
-            driver.Close();
+            productAddedToCart = Pages.ProductDetailPage.GetProductName();
+
+            Pages.ProductDetailPage.AddToCartConfigurableProduct();
+
+            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
+
+            Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
+
         }
 
         [TestMethod]
@@ -47,6 +43,8 @@ namespace Automation.Tests
             Pages.CategoryPage.GoToDigitalProductDetailPage();
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
+
+            Pages.ProductDetailPage.ChangeQty();
 
             Pages.ProductDetailPage.AddToCartDigitalProduct();
 
@@ -64,6 +62,8 @@ namespace Automation.Tests
             Pages.CategoryPage.GoToSimpleProductDetailPage();
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
+
+            Pages.ProductDetailPage.ChangeQty();
 
             Pages.ProductDetailPage.AddToCartSimpleProduct();
 
