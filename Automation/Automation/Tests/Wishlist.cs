@@ -27,12 +27,13 @@ namespace Automation.Tests
             Pages.LoginPage.InsertCredentials();
 
             Pages.LoginPage.SubmitLogin();
+
+            Pages.HomePage.GoToHomepage();
         }
 
         [TestMethod]
         public void AddtoWishlistSimpleProductTest()
         {
-            Pages.HomePage.GoToHomepage();
 
             Pages.HomePage.GoToPrivateSales();
 

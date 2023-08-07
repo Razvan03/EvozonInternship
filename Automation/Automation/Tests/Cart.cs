@@ -7,14 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Automation.Helpers;
 
 /*[assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]*/
 namespace Automation.Tests
 {
     [TestClass]
-    public class Cart
+    public class Cart : BaseTest
     {
+        public string productAddedToCart;
+
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
@@ -61,27 +64,28 @@ namespace Automation.Tests
             Assert.AreEqual(product, message);
             driver.Close();
         }
+
         [TestMethod]
         public void AddtoCartSimpleProductTest()
         {
-            WebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://qa3magento.dev.evozon.com/");
+            Pages.HomePage.GoToPrivateSales();
 
-            driver.FindElement(By.CssSelector("img[alt=\"Shop Private Sales - Members Only\"]")).Click(); //Shop Private Sales Button
+            Pages.PrivateSalesPage.GoToProductDetailPage();
 
-            driver.FindElement(By.Id("product-collection-image-373")).Click(); //Broad St. Flapover Briefcase click
+            productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
-            var product = driver.FindElement(By.CssSelector("div.product-name h1")).GetAttribute("innerText");
+            Pages.ProductDetailPage.AddToCart();
 
-            driver.FindElement(By.CssSelector("button.button.btn-cart[onclick]")).Click(); //Add to cart button
+            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
-            var message = driver.FindElement(By.CssSelector("li.success-msg span")).Text;
+            Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
 
-            message.Should().Contain(product);
-            Assert.AreEqual(product, message);
-            driver.Close();
+        }
 
+        [TestCleanup]
+        public void AddtoCartTestCleanup()
+        {
+            Pages.CartPage.RemoveProductFromCart(productAddedToCart);
         }
     }
 }
