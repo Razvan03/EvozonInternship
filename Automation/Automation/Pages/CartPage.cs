@@ -13,7 +13,7 @@ namespace Automation.Pages
     {
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         private readonly By _productsList = By.CssSelector("h2[class] a");
-        private readonly By _removeButtons = By.CssSelector(".a-center.product-cart-remove.last a");
+        private readonly By _removeButtons = By.CssSelector(".product-cart-remove.last a");
 
         public bool IsConfirmMessageTrue(string productAdded)
         {

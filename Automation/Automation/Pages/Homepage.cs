@@ -7,6 +7,7 @@ using Automation.Helpers;
 using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace Automation.Pages
 {
@@ -19,6 +20,9 @@ namespace Automation.Pages
         private readonly By _toLoginButton = By.CssSelector("a[title=\"Log In\"]");
         private readonly By _toRegisterButton = By.CssSelector("a[title=\"Register\"]");
         private readonly By _privateSalesButton = By.CssSelector("img[alt =\"Shop Private Sales - Members Only\"]");
+        private readonly By _homeDecor = By.CssSelector("li.level0.nav-4.parent a.level0.has-children");
+        private readonly By _booksAndMusic = By.CssSelector("li.level0.nav-4.parent li.level1.nav-4-1.first a.level1");
+        
 
         #endregion
 
@@ -45,5 +49,12 @@ namespace Automation.Pages
             _privateSalesButton.ActionClick();
         }
 
+        public void GoToBooksAndMusic()
+        {
+            Browser.WebDriver.FindElement(_homeDecor).Hover();
+
+            _booksAndMusic.ActionClick();
+
+        }
     }
 }

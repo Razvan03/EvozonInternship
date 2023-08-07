@@ -17,7 +17,7 @@ namespace Automation.Tests
         public static LoginPage LoginPage => PageHelpers.InitPage(new LoginPage());
 
         public static RegisterPage RegisterPage => PageHelpers.InitPage(new RegisterPage());
-        public static PrivateSalesPage PrivateSalesPage => PageHelpers.InitPage(new PrivateSalesPage());
+        public static ListOfProductsByCategoryPage CategoryPage => PageHelpers.InitPage(new ListOfProductsByCategoryPage());
         public static WishlistPage WishlistPage => PageHelpers.InitPage(new WishlistPage());
 
         public static ProductDetailPage ProductDetailPage => PageHelpers.InitPage(new ProductDetailPage());

@@ -12,14 +12,21 @@ namespace Automation.Pages
     {
         private readonly By _productTitle = By.CssSelector("div.product-name h1");
         private readonly By _addToCartButton = By.CssSelector("button.button.btn-cart[onclick]");
+        private readonly By _digitalItemCheckbox = By.Id("links_20");
 
         public string GetProductName()
         {
             return _productTitle.GetAttribute("innerText");
         }
 
-        public void AddToCart()
+        public void AddToCartSimpleProduct()
         {
+            _addToCartButton.ActionClick();
+        }
+
+        public void AddToCartDigitalProduct()
+        {
+            _digitalItemCheckbox.ActionClick();
             _addToCartButton.ActionClick();
         }
     }

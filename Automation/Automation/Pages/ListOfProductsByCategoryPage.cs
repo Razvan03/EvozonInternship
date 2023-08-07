@@ -9,25 +9,47 @@ using OpenQA.Selenium;
 
 namespace Automation.Pages
 {
-    public class PrivateSalesPage
+    public class ListOfProductsByCategoryPage
     {
+
+        #region Selectors
+
+        #region Shop Private Sales
+
         private readonly By _briefcaseProductName = By.CssSelector("h2.product-name a[title=\"Broad St. Flapover Briefcase\"]");
         private readonly By _briefcaseToWishlist = By.CssSelector("a[title =\"Broad St. Flapover Briefcase\"] + div a.link-wishlist");
         private readonly By _briefcaseDetailPage = By.CssSelector("a[title=\"Broad St. Flapover Briefcase\"][class]");
 
-        public void AddBriefcaseToWishlist()
+        #endregion
+
+        #region Home and Decor
+
+        private readonly By _digitalProduct = By.CssSelector("a[title=\"A Tale of Two Cities\"][class]");
+
+
+        #endregion
+
+        #endregion
+
+
+        public void AddProductToWishlist()
         {
             _briefcaseToWishlist.ActionClick();
         }
 
-        public string GetBriefcaseName()
+        public string GetProductName()
         {
             return _briefcaseProductName.GetText();
         }
 
-        public void GoToProductDetailPage()
+        public void GoToSimpleProductDetailPage()
         {
             _briefcaseDetailPage.ActionClick();
+        }
+
+        public void GoToDigitalProductDetailPage()
+        {
+            _digitalProduct.ActionClick();
         }
     }
 }

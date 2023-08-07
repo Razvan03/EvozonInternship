@@ -42,27 +42,18 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartDigitalProductTest()
         {
-            WebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://qa3magento.dev.evozon.com/");
+            Pages.HomePage.GoToBooksAndMusic();
 
-            Actions actions = new Actions(driver);
-            var element = driver.FindElement(By.CssSelector("li.level0.nav-4.parent a.level0.has-children")); // Home&Decor element
-            actions.MoveToElement(element).Perform(); //Hover over
+            Pages.CategoryPage.GoToDigitalProductDetailPage();
 
-            driver.FindElement(By.CssSelector("li.level0.nav-4.parent li.level1.nav-4-1.first a.level1 ")).Click(); //Books & Music //Intr-un proiect adevarat as fi mers pe elementele copil al Home&Decor element si as cauta elementul copil dupa innertext :)
-            driver.FindElement(By.Id("product-collection-image-448")).Click(); //A Tale of Two Cities disk
+            productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
-            var product = driver.FindElement(By.CssSelector("div.product-name h1")).GetAttribute("innerText"); //Product name
+            Pages.ProductDetailPage.AddToCartDigitalProduct();
 
-            driver.FindElement(By.Id("links_20")).Click(); //Checkbox
-            driver.FindElement(By.CssSelector("button.button.btn-cart[onclick]")).Click(); //Add to cart button
+            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
-            var message = driver.FindElement(By.CssSelector("li.success-msg span")).Text;
+            Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
 
-            message.Should().Contain(product);
-            Assert.AreEqual(product, message);
-            driver.Close();
         }
 
         [TestMethod]
@@ -70,11 +61,11 @@ namespace Automation.Tests
         {
             Pages.HomePage.GoToPrivateSales();
 
-            Pages.PrivateSalesPage.GoToProductDetailPage();
+            Pages.CategoryPage.GoToSimpleProductDetailPage();
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
-            Pages.ProductDetailPage.AddToCart();
+            Pages.ProductDetailPage.AddToCartSimpleProduct();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 

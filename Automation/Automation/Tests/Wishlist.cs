@@ -37,9 +37,9 @@ namespace Automation.Tests
 
             Pages.HomePage.GoToPrivateSales();
 
-            productAddedtoWishlist = Pages.PrivateSalesPage.GetBriefcaseName();
+            productAddedtoWishlist = Pages.CategoryPage.GetProductName();
 
-            Pages.PrivateSalesPage.AddBriefcaseToWishlist();
+            Pages.CategoryPage.AddProductToWishlist();
 
             Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
 
