@@ -17,9 +17,15 @@ namespace Automation.Pages
         private readonly By _wishlistProductNames = By.CssSelector("#wishlist-table tbody tr h3 a");
         private readonly By _wishlistRemoveButtons = By.CssSelector("#wishlist-table tbody tr td[class*=\"remove\"] a");
         private readonly By _briefcaseProduct = By.CssSelector("#wishlist-table tbody tr h3 a[title=\"Broad St. Flapover Briefcase\"]");
+        private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         #endregion
 
         WebDriverWait wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(10));
+
+        public string GetConfirmMessage()
+        {
+            return Browser.GetDriver().FindElement(_confirmMessage).Text;
+        }
 
         public void removeBriefcaseFromWishlist(string product) //TO DO (NOT COMPLETED)
         {

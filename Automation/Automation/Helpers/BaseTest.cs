@@ -1,9 +1,9 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NsTestFrameworkUI.Helpers;
 
 [assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]
@@ -16,8 +16,11 @@ namespace Automation.Helpers
         [TestInitialize]
         public virtual void Before()
         {
-            Browser.InitializeDriver();
-            Browser.GoToWebsite(Constants.Url);
+            Browser.InitializeDriver(new DriverOptions
+            {
+                IsHeadless = false
+            });
+            Browser.GoTo("http://qa3magento.dev.evozon.com/");
         }
 
         [TestCleanup]
@@ -25,7 +28,7 @@ namespace Automation.Helpers
         {
             if(TestContext.CurrentTestOutcome.Equals(UnitTestOutcome.Failed))
             {
-                var path = Screenshot.GetScreenShotPath(TestContext.TestName, Browser.GetDriver());
+                var path = Screenshot.GetScreenShotPath(TestContext.TestName,Browser.WebDriver);
                 TestContext.AddResultFile(path);
             }
             Browser.Cleanup();
