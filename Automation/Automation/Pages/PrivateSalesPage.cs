@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 
 namespace Automation.Pages
@@ -15,17 +16,12 @@ namespace Automation.Pages
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         public void AddBriefcaseToWishlist()
         {
-            Browser.GetDriver().FindElement(_briefcaseToWishlist).Click();
+            _briefcaseToWishlist.ActionClick();
         }
 
         public string GetBriefcaseName()
         {
-            return Browser.GetDriver().FindElement(_briefcaseProductName).Text;
-        }
-
-        public bool IsAdded(string product)
-        {
-            return Browser.GetDriver().FindElement(_confirmMessage).Text.ToUpper().Contains(product);
+            return _briefcaseProductName.GetText();
         }
     }
 }

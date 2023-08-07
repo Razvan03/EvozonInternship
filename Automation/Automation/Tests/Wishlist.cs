@@ -16,6 +16,7 @@ namespace Automation.Tests
     [TestClass]
     public class Wishlist : BaseTest
     {
+        public string productAddedtoWishlist;
         [TestInitialize]
         public override void Before()
         {
@@ -35,27 +36,19 @@ namespace Automation.Tests
 
             Pages.HomePage.GoToPrivateSales();
 
-            var productAddedtoWishlist = Pages.PrivateSalesPage.GetBriefcaseName();
+            productAddedtoWishlist = Pages.PrivateSalesPage.GetBriefcaseName();
 
             Pages.PrivateSalesPage.AddBriefcaseToWishlist();
 
-            Pages.PrivateSalesPage.IsAdded(productAddedtoWishlist);
+            Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
+
+            Pages.WishlistPage.IsProductInWishlist(productAddedtoWishlist).Should().BeTrue();
 
         }
         [TestCleanup]
-        public void AddtoWishlistSimpleProductCleanup() //TO DO , NOT COMPLETED
+        public void AddtoWishlistSimpleProductCleanup() 
         {
-
-
-            /*var wishlistElementsName = driver.FindElements(By.CssSelector("#wishlist-table tbody tr h3 a"));
-            var removeButtons = driver.FindElements(By.CssSelector("#wishlist-table tbody tr td[class*=\"remove\"] a"));
-            var element = wishlistElementsName.First(i => i.Text == productName);
-            var index = wishlistElementsName.IndexOf(element);
-            removeButtons[index].Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent()).Accept();
-            wait.Until(drv => !drv.FindElements(By.CssSelector($"#wishlist-table tbody tr h3 a[title=\"Broad St. Flapover Briefcase\"]")).Any());
-            driver.Quit();*/
+            Pages.WishlistPage.RemoveProductFromWishlist(productAddedtoWishlist);
         }
     }
 }

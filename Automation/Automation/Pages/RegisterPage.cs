@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 
 namespace Automation.Pages
@@ -32,25 +33,23 @@ namespace Automation.Pages
 
         public void InsertCredentials()
         {
-            
-
-            Browser.GetDriver().FindElement(_firstNameField).SendKeys(firstName);
-            Browser.GetDriver().FindElement(_middleNameField).SendKeys(middleName);
-            Browser.GetDriver().FindElement(_lastNameField).SendKeys(lastName);
-            Browser.GetDriver().FindElement(_emailField).SendKeys(emailAddress);
-            Browser.GetDriver().FindElement(_passwordField).SendKeys(lastName);
-            Browser.GetDriver().FindElement(_confirmPasswordField).SendKeys(lastName);
-            Browser.GetDriver().FindElement(_newsletterCheckbox).Click();
+            _firstNameField.ActionSendKeys(firstName);
+            _middleNameField.ActionSendKeys(middleName);
+            _lastNameField.ActionSendKeys(lastName);
+            _emailField.ActionSendKeys(emailAddress);
+            _passwordField.ActionSendKeys(lastName);
+            _confirmPasswordField.ActionSendKeys(lastName);
+            _newsletterCheckbox.ActionClick();
         }
 
         public void SubmitRegister()
         {
-            Browser.GetDriver().FindElement(_registerButton).Click();
+            _registerButton.ActionClick();
         }
 
         public bool IsUserRegistered()
         {
-            return Browser.GetDriver().FindElement(_welcomeText).Text == helloText;
+            return _welcomeText.GetText() == helloText;
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
 using OpenQA.Selenium.Support.UI;
+using NsTestFrameworkUI.Pages;
+using NsTestFrameworkUI.Helpers;
 
 namespace Automation.Pages
 {
@@ -20,22 +22,49 @@ namespace Automation.Pages
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         #endregion
 
-        WebDriverWait wait = new WebDriverWait(Browser.GetDriver(), TimeSpan.FromSeconds(10));
+        #region WebElements
+
+        #endregion
 
         public string GetConfirmMessage()
         {
-            return Browser.GetDriver().FindElement(_confirmMessage).Text;
+            return _confirmMessage.GetText();
         }
 
-        public void removeBriefcaseFromWishlist(string product) //TO DO (NOT COMPLETED)
+        public bool IsConfirmMessageTrue(string productAdded)
         {
-            var wishlistElementsName = Browser.GetDriver().FindElements(_wishlistProductNames);
-            var removeButtons = Browser.GetDriver().FindElements(_wishlistRemoveButtons);
-            var element = wishlistElementsName.First(i => i.Text == product);
-            var index = wishlistElementsName.IndexOf(element);
+            return _confirmMessage.GetText().ToUpper().Contains(productAdded);
+        }
+
+        public bool IsProductInWishlist(string product)
+        {
+            var wishlistElementsName = _wishlistProductNames.GetElements();
+            return wishlistElementsName.Any(i => i.Text.Equals(product));
+
+        }
+
+        public void RemoveProductFromWishlist(string product) 
+        {
+            
+            var wishlistElementsName = _wishlistProductNames.GetElements();
+
+            var removeButtons = _wishlistRemoveButtons.GetElements();
+
+            var elementToRemove = wishlistElementsName.First(i => i.Text == product);
+            var index = wishlistElementsName.IndexOf(elementToRemove);
+
             removeButtons[index].Click();
-            //wait.Until(Browser.GetDriver () => !Browser.GetDriver().FindElements(_briefcaseProduct)).Any();
-            Browser.GetDriver().Quit(); 
+
+            try
+            {
+                Browser.WebDriver.SwitchTo().Alert().Accept();
+            }
+            catch (NoAlertPresentException)
+            {
+                Console.WriteLine("No alert present at this time.");
+            }
+
+            WaitHelpers.WaitForDocumentReadyState();
         }
     }
 }

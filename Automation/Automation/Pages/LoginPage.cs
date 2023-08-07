@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
+using NsTestFrameworkUI.Helpers;
 
 namespace Automation.Pages
 {
@@ -21,17 +23,17 @@ namespace Automation.Pages
 
         public void InsertCredentials()
         {
-            Browser.GetDriver().FindElement(_emailField).SendKeys(Constants.email);
-            Browser.GetDriver().FindElement(_passwordField).SendKeys(Constants.password);
+            _emailField.ActionSendKeys(Constants.email);
+            _passwordField.ActionSendKeys(Constants.password);
         }
         public void SubmitLogin()
         {
-            Browser.GetDriver().FindElement(_loginButton).Click();
+            _loginButton.ActionClick();
         }
 
         public bool IsUserLoggedIn()
         {
-            return Browser.GetDriver().FindElement(_welcomeText).Text == Constants.myWelcomeText;
+            return _welcomeText.GetText() == Constants.myWelcomeText;
         }
     }
 }

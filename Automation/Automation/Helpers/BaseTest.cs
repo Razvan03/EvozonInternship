@@ -18,9 +18,11 @@ namespace Automation.Helpers
         {
             Browser.InitializeDriver(new DriverOptions
             {
-                IsHeadless = false
+                IsHeadless = false,
+                ChromeDriverPath = @"D:\SeleniumDrivers\chromedriver-win64 115"
             });
-            Browser.GoTo("http://qa3magento.dev.evozon.com/");
+            Browser.WebDriver.Manage().Window.Maximize();
+            Browser.GoTo("http://qa3magento.dev.evozon.com/"); 
         }
 
         [TestCleanup]

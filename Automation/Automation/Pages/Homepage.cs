@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 
 namespace Automation.Pages
@@ -22,25 +24,25 @@ namespace Automation.Pages
 
         public void GoToLoginPage()
         {
-            Browser.GetDriver().FindElement(_accountButton).Click();
-            Browser.GetDriver().FindElement(_toLoginButton).Click();
-            //WaitHelpers.ExplicitWait();
+            _accountButton.ActionClick();
+            _toLoginButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
 
         public void GoToRegisterPage()
         {
-            Browser.GetDriver().FindElement(_accountButton).Click();
-            Browser.GetDriver().FindElement(_toRegisterButton).Click();
+            _accountButton.ActionClick();
+            _toRegisterButton.ActionClick();
         }
 
         public void GoToHomepage()
         {
-            Browser.GetDriver().FindElement(_homeLogoButton).Click();
+            _homeLogoButton.ActionClick();
         }
 
         public void GoToPrivateSales()
         {
-            Browser.GetDriver().FindElement(_privateSalesButton).Click();
+            _privateSalesButton.ActionClick();
         }
 
     }
