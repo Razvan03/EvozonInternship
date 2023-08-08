@@ -43,6 +43,8 @@ namespace Automation.Tests
         public void AddtoWishlistSimpleProductCleanup()
         {
             Pages.WishlistPage.RemoveProductFromWishlist(productAddedtoWishlist);
-        }
+        } 
+
+        //commit
     }
 }
