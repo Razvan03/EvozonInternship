@@ -42,6 +42,7 @@ namespace Automation.Pages
 
         public void GoToAccountDropdownOption(AccountOption option)
         {
+            _accountButton.ActionClick();
             var selectedOption =
                 _accountOptionsDropdown.GetElements().First(o => o.GetAttribute("title").Equals(option.GetDescription()));
             selectedOption.Click();
@@ -54,7 +55,6 @@ namespace Automation.Pages
 
         public void GoToSubcategoryFromDropdown(Category categoryTitle, Enum subcategoryTitle)
         {
-
             // get all category elements
             var categories = _categoryList.GetElements();
             // find the category with the matching title
@@ -89,5 +89,7 @@ namespace Automation.Pages
             _searchButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
+
+
     }
 }

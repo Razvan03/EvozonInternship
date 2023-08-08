@@ -1,12 +1,4 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentAssertions;
 using Automation.Helpers;
 using MsTests.Helpers.Enums;
 
@@ -22,7 +14,9 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
-            Pages.HomePage.SelectItemFromNewProducts("Chelsea Tee");
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+
+            Pages.ProductsPage.GoToProductDetailsPage("Chelsea Tee");
 
             Pages.ProductDetailPage.ChangeQty();
 
@@ -43,13 +37,15 @@ namespace Automation.Tests
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
 
-            Pages.CategoryPage.GoToDigitalProductDetailPage();
+            Pages.ProductsPage.GoToProductDetailsPage("A Tale of Two Cities");
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
             Pages.ProductDetailPage.ChangeQty();
 
-            Pages.ProductDetailPage.AddToCartDigitalProduct();
+            Pages.ProductDetailPage.CheckDigitalProduct();
+
+            Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
@@ -62,7 +58,7 @@ namespace Automation.Tests
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
-            Pages.CategoryPage.GoToSimpleProductDetailPage();
+            Pages.ProductsPage.GoToProductDetailsPage("Broad St. Flapover Briefcase");
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
 

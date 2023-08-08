@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using Automation.Helpers.Enums;
 
 namespace Automation.Tests
 {
@@ -16,12 +17,9 @@ namespace Automation.Tests
         [TestMethod]
         public void LoginTest()
         {
-            Pages.HomePage.GoToLoginPage();
-
+            Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
             Pages.LoginPage.InsertCredentialsAndLogin();
-
             Pages.LoginPage.IsUserLoggedIn().Should().BeTrue();
-
         }
     }
 }
