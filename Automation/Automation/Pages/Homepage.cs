@@ -29,7 +29,7 @@ namespace Automation.Pages
         public void SelectItemFromNewProducts(string productName)
         {
             var newProductsList = _newProductsItems.GetElements();
-            var SelectedItem = newProductsList.First(i => i.GetAttribute("alt") == productName);
+            var SelectedItem = newProductsList.First(i => i.GetAttribute("title") == productName);
             SelectedItem.Click();
         }
 
