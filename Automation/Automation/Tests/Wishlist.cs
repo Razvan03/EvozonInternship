@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using MsTests.Helpers.Enums;
 
 /*[assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]*/
@@ -35,7 +36,7 @@ namespace Automation.Tests
         public void AddtoWishlistSimpleProductTest()
         {
 
-            Pages.HomePage.GoToPrivateSales();
+            Pages.HomePage.NavigateToSubcategoryFromDropdown(Category.VIP, null);
 
             productAddedtoWishlist = Pages.CategoryPage.GetProductName();
 
