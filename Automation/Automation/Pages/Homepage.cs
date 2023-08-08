@@ -33,13 +33,6 @@ namespace Automation.Pages
 
         #endregion
 
-        public void SelectItemFromNewProducts(string productName)
-        {
-            var newProductsList = _newProductsItems.GetElements();
-            var SelectedItem = newProductsList.First(i => i.GetAttribute("title") == productName);
-            SelectedItem.Click();
-        }
-
         public void GoToAccountDropdownOption(AccountOption option)
         {
             _accountButton.ActionClick();

@@ -18,16 +18,14 @@ namespace Automation.Tests
 
             Pages.ProductsPage.GoToProductDetailsPage("Chelsea Tee");
 
-            Pages.ProductDetailPage.ChangeQty();
-
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
             Pages.ProductDetailPage.SelectItemColor(Color.Black);
             Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailPage.ChangeQty();
             Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
-
             Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
 
         }
@@ -69,7 +67,6 @@ namespace Automation.Tests
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
             Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
-
         }
 
         [TestCleanup]

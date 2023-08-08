@@ -12,7 +12,7 @@ namespace Automation.Tests
     public class Navigation : BaseTest
     {
         [TestMethod]
-        public void NavigateThroughMainCategories()
+        public void GoThroughMainCategories()
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
             Pages.CategoryPage.IsCategoryTitleDisplayed();
@@ -40,7 +40,7 @@ namespace Automation.Tests
         }
 
         [TestMethod]
-        public void NavigateThroughWomenSubcategories()
+        public void GoThroughWomenSubcategories()
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
             Pages.ProductsPage.IsSubcategoryTitleDisplayed();
