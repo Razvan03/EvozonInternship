@@ -36,7 +36,7 @@ namespace Automation.Tests
         public void AddtoWishlistSimpleProductTest()
         {
 
-            Pages.HomePage.NavigateToSubcategoryFromDropdown(Category.VIP, null);
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
             productAddedtoWishlist = Pages.CategoryPage.GetProductName();
 

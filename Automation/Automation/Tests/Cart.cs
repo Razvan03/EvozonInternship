@@ -41,7 +41,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartDigitalProductTest()
         {
-            Pages.HomePage.NavigateToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
 
             Pages.CategoryPage.GoToDigitalProductDetailPage();
 
@@ -60,7 +60,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartSimpleProductTest()
         {
-            Pages.HomePage.NavigateToSubcategoryFromDropdown(Category.VIP, null);
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
             Pages.CategoryPage.GoToSimpleProductDetailPage();
 
