@@ -14,6 +14,7 @@ namespace Automation.Pages
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         private readonly By _productsList = By.CssSelector("h2[class] a");
         private readonly By _removeButtons = By.CssSelector(".product-cart-remove.last a");
+        private readonly By _proceedToCheckoutButton = By.CssSelector("li[class] .btn-checkout");
 
         public bool IsConfirmMessageTrue(string productAdded)
         {
@@ -31,6 +32,11 @@ namespace Automation.Pages
             _removeButtons.ClickBasedOnLabel(_productsList, product.ToUpper());
 
             WaitHelpers.WaitForDocumentReadyState();
+        }
+
+        public void ProceedToCheckout()
+        {
+            _proceedToCheckoutButton.ActionClick();
         }
     }
 }
