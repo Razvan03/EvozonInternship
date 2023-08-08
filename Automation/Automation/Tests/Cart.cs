@@ -27,7 +27,6 @@ namespace Automation.Tests
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
             Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
-
         }
 
         [TestMethod]

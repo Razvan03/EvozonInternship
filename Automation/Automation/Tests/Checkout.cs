@@ -14,7 +14,8 @@ namespace Automation.Tests
         [TestMethod]
         public void ProceedToCheckoutWithoutAccount()
         {
-            Pages.HomePage.SelectItemFromNewProducts("Chelsea Tee");
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+            Pages.ProductsPage.GoToProductDetailsPage("Chelsea Tee");
 
             Pages.ProductDetailPage.ChangeQty();
 
