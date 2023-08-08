@@ -37,8 +37,8 @@ namespace Automation.Pages
             _middleNameField.ActionSendKeys(middleName);
             _lastNameField.ActionSendKeys(lastName);
             _emailField.ActionSendKeys(emailAddress);
-            _passwordField.ActionSendKeys(lastName);
-            _confirmPasswordField.ActionSendKeys(lastName);
+            _passwordField.ActionSendKeys(Constants.RANDOM_PASSWORD);
+            _confirmPasswordField.ActionSendKeys(Constants.RANDOM_PASSWORD);
             _newsletterCheckbox.ActionClick();
         }
 

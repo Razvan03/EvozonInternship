@@ -59,7 +59,7 @@ namespace Automation.Pages
             _homeLogoButton.ActionClick();
         }
 
-        public void NavigateToSubcategoryFromDropdown(Category categoryTitle, Enum subcategoryTitle)
+        public void GoToSubcategoryFromDropdown(Category categoryTitle, Enum subcategoryTitle)
         {
 
             // get all category elements

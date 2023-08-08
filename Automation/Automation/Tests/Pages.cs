@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using MsTests.Pages;
 using SeleniumExtras.PageObjects;
 using NsTestFrameworkUI.Pages;
 
@@ -20,5 +21,6 @@ namespace Automation.Tests
         public static ProductDetailPage ProductDetailPage => PageHelpers.InitPage(new ProductDetailPage());
         public static CartPage CartPage => PageHelpers.InitPage(new CartPage());
         public static SearchResultsPage SearchResultsPage => PageHelpers.InitPage(new SearchResultsPage());
+        public static AdminPage AdminPage => PageHelpers.InitPage(new AdminPage());
     }
 }
