@@ -22,5 +22,6 @@ namespace Automation.Tests
         public static CartPage CartPage => PageHelpers.InitPage(new CartPage());
         public static SearchResultsPage SearchResultsPage => PageHelpers.InitPage(new SearchResultsPage());
         public static AdminPage AdminPage => PageHelpers.InitPage(new AdminPage());
+        public static CheckoutPage CheckoutPage => PageHelpers.InitPage(new CheckoutPage());
     }
 }
