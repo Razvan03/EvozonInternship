@@ -24,12 +24,15 @@ namespace Automation.Pages
         private readonly By _booksAndMusic = By.CssSelector("li.level0.nav-4.parent li.level1.nav-4-1.first a.level1");
         private readonly By _newProductsItems = By.CssSelector("a[class=\"product-image\"]");
 
+        private readonly By _searchField = By.Id("search");
+        private readonly By _searchButton = By.CssSelector(".search-button");
+
         #endregion
 
         public void SelectItemFromNewProducts(string productName)
         {
             var newProductsList = _newProductsItems.GetElements();
-            var SelectedItem = newProductsList.First(i => i.GetAttribute("alt") == productName);
+            var SelectedItem = newProductsList.First(i => i.GetAttribute("title") == productName);
             SelectedItem.Click();
         }
 
@@ -62,6 +65,13 @@ namespace Automation.Pages
 
             _booksAndMusic.ActionClick();
 
+        }
+
+        public void PerformSearchForKeyword(string keyword)
+        {
+            _searchField.ActionSendKeys(keyword);
+            _searchButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
     }
 }

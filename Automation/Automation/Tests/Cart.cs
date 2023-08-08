@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using MsTests.Helpers.Enums;
 
 /*[assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]*/
@@ -27,7 +28,9 @@ namespace Automation.Tests
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
-            Pages.ProductDetailPage.AddToCartConfigurableProduct();
+            Pages.ProductDetailPage.SelectItemColor(Color.Black);
+            Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
@@ -65,7 +68,7 @@ namespace Automation.Tests
 
             Pages.ProductDetailPage.ChangeQty();
 
-            Pages.ProductDetailPage.AddToCartSimpleProduct();
+            Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
