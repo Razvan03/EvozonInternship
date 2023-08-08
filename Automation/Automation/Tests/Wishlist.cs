@@ -25,8 +25,7 @@ namespace Automation.Tests
             base.Before();
 
             Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
-            Pages.LoginPage.InsertCredentials();
-            Pages.LoginPage.SubmitLogin();
+            Pages.LoginPage.InsertCredentialsAndLogin();
             Pages.HomePage.GoToHomepage();
         }
 
