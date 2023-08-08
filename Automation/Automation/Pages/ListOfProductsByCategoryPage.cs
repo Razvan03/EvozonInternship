@@ -17,7 +17,7 @@ namespace Automation.Pages
         #region Shop Private Sales
 
         private readonly By _briefcaseProductName = By.CssSelector("h2.product-name a[title=\"Broad St. Flapover Briefcase\"]");
-        private readonly By _briefcaseToWishlist = By.CssSelector("a[title =\"Broad St. Flapover Briefcase\"] + div a.link-wishlist");
+        private readonly By _briefcaseToWishlistButton = By.CssSelector("a[title =\"Broad St. Flapover Briefcase\"] + div a.link-wishlist");
         private readonly By _briefcaseDetailPage = By.CssSelector("a[title=\"Broad St. Flapover Briefcase\"][class]");
 
         #endregion
@@ -34,7 +34,7 @@ namespace Automation.Pages
 
         public void AddProductToWishlist()
         {
-            _briefcaseToWishlist.ActionClick();
+            _briefcaseToWishlistButton.ActionClick();
         }
 
         public string GetProductName()

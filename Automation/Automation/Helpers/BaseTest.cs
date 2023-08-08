@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using NsTestFrameworkUI.Helpers;
@@ -19,7 +20,7 @@ namespace Automation.Helpers
             Browser.InitializeDriver(new DriverOptions
             {
                 IsHeadless = false,
-                ChromeDriverPath = @"D:\SeleniumDrivers\chromedriver-win64 115"
+                ChromeDriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
             });
             Browser.WebDriver.Manage().Window.Maximize();
             Browser.GoTo("http://qa3magento.dev.evozon.com/"); 
@@ -30,7 +31,7 @@ namespace Automation.Helpers
         {
             if(TestContext.CurrentTestOutcome.Equals(UnitTestOutcome.Failed))
             {
-                var path = Screenshot.GetScreenShotPath(TestContext.TestName,Browser.WebDriver);
+                var path = ScreenShot.GetScreenShotPath(TestContext.TestName);
                 TestContext.AddResultFile(path);
             }
             Browser.Cleanup();

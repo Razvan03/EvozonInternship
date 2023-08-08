@@ -21,7 +21,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
-            Pages.HomePage.GoToConfigurableProduct();
+            Pages.HomePage.SelectItemFromNewProducts("Chelsea Tee");
 
             Pages.ProductDetailPage.ChangeQty();
 

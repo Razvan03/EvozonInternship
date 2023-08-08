@@ -43,14 +43,14 @@ namespace Automation.Pages
 
         }
 
-        public void RemoveProductFromWishlist(string product) 
+        public void RemoveProductFromWishlist(string productName) 
         {
             
             var wishlistElementsName = _wishlistProductNames.GetElements();
 
             var removeButtons = _wishlistRemoveButtons.GetElements();
 
-            var elementToRemove = wishlistElementsName.First(i => i.Text == product);
+            var elementToRemove = wishlistElementsName.First(i => i.Text == productName);
             var index = wishlistElementsName.IndexOf(elementToRemove);
 
             removeButtons[index].Click();

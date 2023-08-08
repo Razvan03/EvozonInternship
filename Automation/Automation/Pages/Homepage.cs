@@ -22,13 +22,15 @@ namespace Automation.Pages
         private readonly By _privateSalesButton = By.CssSelector("img[alt =\"Shop Private Sales - Members Only\"]");
         private readonly By _homeDecor = By.CssSelector("li.level0.nav-4.parent a.level0.has-children");
         private readonly By _booksAndMusic = By.CssSelector("li.level0.nav-4.parent li.level1.nav-4-1.first a.level1");
-        private readonly By _configurableProduct = By.CssSelector("h3.product-name a[title=\"Chelsea Tee\"]");
+        private readonly By _newProductsItems = By.CssSelector("a[class=\"product-image\"]");
 
         #endregion
 
-        public void GoToConfigurableProduct()
+        public void SelectItemFromNewProducts(string productName)
         {
-            _configurableProduct.ActionClick();
+            var newProductsList = _newProductsItems.GetElements();
+            var SelectedItem = newProductsList.First(i => i.GetAttribute("alt") == productName);
+            SelectedItem.Click();
         }
 
         public void GoToLoginPage()
