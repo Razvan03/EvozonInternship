@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MsTests.Helpers.Enums;
+using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 
@@ -28,13 +30,7 @@ namespace Automation.Pages
             _productQty.ActionSendKeys("2");
         }
 
-        public void AddToCartConfigurableProduct()
-        {
-            _productColor.ActionClick();
-            _productSize.ActionClick();
-            _addToCartButton.ActionClick();
-        }
-        public void AddToCartSimpleProduct()
+        public void AddProductToCart()
         {
             _addToCartButton.ActionClick();
         }
@@ -44,5 +40,15 @@ namespace Automation.Pages
             _digitalItemCheckbox.ActionClick();
             _addToCartButton.ActionClick();
         }
+        public void SelectItemColor(Color color)
+        {
+            Browser.WebDriver.FindElement(By.CssSelector($"#configurable_swatch_color [title=\"{color}\"] .swatch-label")).Click();
+        }
+
+        public void SelectItemSize(ClothesSize size)
+        {
+            Browser.WebDriver.FindElement(By.CssSelector($"#configurable_swatch_size [title=\"{size}\"] .swatch-label")).Click();
+        }
+
     }
 }
