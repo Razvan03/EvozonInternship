@@ -38,5 +38,19 @@ namespace MsTests.Helpers.Enums
             [System.ComponentModel.Description("Blazers")]
             BLAZERS
         }
+
+        public enum HomeAndDecor
+        {
+            [System.ComponentModel.Description("View All Home & Decor")]
+            VIEW_ALL,
+            [System.ComponentModel.Description("Books & Music")]
+            BOOKS_AND_MUSIC,
+            [System.ComponentModel.Description("Bed & Bath")]
+            BED_AND_BATH,
+            [System.ComponentModel.Description("Electronics")]
+            ELECTRONICS,
+            [System.ComponentModel.Description("Decorative Accents")]
+            DECORATIVE_ACCENTS
+        }
     }
 }

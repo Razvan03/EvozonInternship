@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using MsTests.Helpers;
+using MsTests.Helpers.Enums;
 using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
@@ -26,6 +28,9 @@ namespace Automation.Pages
 
         private readonly By _searchField = By.Id("search");
         private readonly By _searchButton = By.CssSelector(".search-button");
+
+        private readonly By _categoryList = By.CssSelector(".level0 > a, .level0.has-children > a");
+        private readonly By _subcategoryList = By.CssSelector(".level1 a");
 
         #endregion
 
@@ -54,17 +59,35 @@ namespace Automation.Pages
             _homeLogoButton.ActionClick();
         }
 
-        public void GoToPrivateSales()
+        public void NavigateToSubcategoryFromDropdown(Category categoryTitle, Enum subcategoryTitle)
         {
-            _privateSalesButton.ActionClick();
-        }
 
-        public void GoToBooksAndMusic()
-        {
-            Browser.WebDriver.FindElement(_homeDecor).Hover();
+            // get all category elements
+            var categories = _categoryList.GetElements();
+            // find the category with the matching title
+            var category = categories.FirstOrDefault(c => c.Text == categoryTitle.GetDescription());
+            if (category == null)
+            {
+                throw new ArgumentException($"No category found with title: {categoryTitle}");
+            }
+            
+            // the vip  category doesn't have any subcategories
+            if (categoryTitle == Category.VIP)
+            {
+                category.Click();
+                return;
+            }
 
-            _booksAndMusic.ActionClick();
+            // hover over the category
+            category.Hover();
 
+            var subcategories = _subcategoryList.GetElements();
+            var subcategory = subcategories.FirstOrDefault(s => s.Text == subcategoryTitle.GetDescription());
+            if (subcategory == null)
+            {
+                throw new ArgumentException($"No subcategory found with title: {categoryTitle}");
+            }
+            subcategory.Click();
         }
 
         public void PerformSearchForKeyword(string keyword)
