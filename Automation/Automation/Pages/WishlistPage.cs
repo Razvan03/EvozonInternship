@@ -22,10 +22,6 @@ namespace Automation.Pages
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         #endregion
 
-        #region WebElements
-
-        #endregion
-
         public string GetConfirmMessage()
         {
             return _confirmMessage.GetText();

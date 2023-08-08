@@ -15,8 +15,6 @@ namespace Automation.Pages
         private readonly By _productTitle = By.CssSelector("div.product-name h1");
         private readonly By _addToCartButton = By.CssSelector("button.button.btn-cart[onclick]");
         private readonly By _digitalItemCheckbox = By.Id("links_20");
-        private readonly By _productColor = By.Id("swatch27");
-        private readonly By _productSize = By.Id("swatch79");
         private readonly By _productQty = By.Id("qty");
 
         public string GetProductName()
@@ -26,7 +24,6 @@ namespace Automation.Pages
 
         public void ChangeQty()
         {
-            _productQty.ClearField();
             _productQty.ActionSendKeys("2");
         }
 

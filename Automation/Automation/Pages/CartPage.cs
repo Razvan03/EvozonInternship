@@ -28,15 +28,7 @@ namespace Automation.Pages
 
         public void RemoveProductFromCart(string product)
         {
-
-            var cartElementsName = _productsList.GetElements();
-
-            var removeButtons = _removeButtons.GetElements();
-
-            var elementToRemove = cartElementsName.First(i => i.Text == product.ToUpper());
-            var index = cartElementsName.IndexOf(elementToRemove);
-
-            removeButtons[index].Click();
+            _removeButtons.ClickBasedOnLabel(_productsList, product.ToUpper());
 
             WaitHelpers.WaitForDocumentReadyState();
         }

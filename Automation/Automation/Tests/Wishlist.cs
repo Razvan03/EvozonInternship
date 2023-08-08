@@ -25,9 +25,7 @@ namespace Automation.Tests
 
             Pages.HomePage.GoToLoginPage();
 
-            Pages.LoginPage.InsertCredentials();
-
-            Pages.LoginPage.SubmitLogin();
+            Pages.LoginPage.InsertCredentialsAndLogin();
 
             Pages.HomePage.GoToHomepage();
         }
