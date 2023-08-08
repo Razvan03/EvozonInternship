@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Automation.Helpers;
+using Automation.Helpers.Enums;
 using NsTestFrameworkUI.Helpers;
 
 /*[assembly: Parallelize(Workers = 4,
@@ -19,7 +20,7 @@ namespace Automation.Tests
         [TestMethod]
         public void RegisterTest()
         {
-            Pages.HomePage.GoToRegisterPage();
+            Pages.HomePage.GoToAccountDropdownOption(AccountOption.REGISTER);
             Pages.RegisterPage.InsertCredentials();
             Pages.RegisterPage.SubmitRegister();
             Pages.RegisterPage.IsUserRegistered().Should().BeTrue();
@@ -28,7 +29,6 @@ namespace Automation.Tests
         [TestCleanup]
         public override void After()
         {
-            //delete the created user from admin
             Pages.AdminPage.PerformAdminLogin();
             Pages.AdminPage.DeleteLastRegisteredCustomer();
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using Automation.Helpers.Enums;
 using MsTests.Helpers;
 using MsTests.Helpers.Enums;
 using NsTestFrameworkUI.Helpers;
@@ -19,11 +20,9 @@ namespace Automation.Pages
 
         private readonly By _homeLogoButton = By.CssSelector("a.logo");
         private readonly By _accountButton = By.CssSelector("a.skip-link.skip-account");
+        private readonly By _accountOptionsDropdown = By.CssSelector("#header-account li a");
         private readonly By _toLoginButton = By.CssSelector("a[title=\"Log In\"]");
         private readonly By _toRegisterButton = By.CssSelector("a[title=\"Register\"]");
-        private readonly By _privateSalesButton = By.CssSelector("img[alt =\"Shop Private Sales - Members Only\"]");
-        private readonly By _homeDecor = By.CssSelector("li.level0.nav-4.parent a.level0.has-children");
-        private readonly By _booksAndMusic = By.CssSelector("li.level0.nav-4.parent li.level1.nav-4-1.first a.level1");
         private readonly By _newProductsItems = By.CssSelector("a[class=\"product-image\"]");
 
         private readonly By _searchField = By.Id("search");
@@ -41,17 +40,11 @@ namespace Automation.Pages
             SelectedItem.Click();
         }
 
-        public void GoToLoginPage()
+        public void GoToAccountDropdownOption(AccountOption option)
         {
-            _accountButton.ActionClick();
-            _toLoginButton.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
-        public void GoToRegisterPage()
-        {
-            _accountButton.ActionClick();
-            _toRegisterButton.ActionClick();
+            var selectedOption =
+                _accountOptionsDropdown.GetElements().First(o => o.GetAttribute("title").Equals(option.GetDescription()));
+            selectedOption.Click();
         }
 
         public void GoToHomepage()
