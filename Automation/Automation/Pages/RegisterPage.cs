@@ -25,11 +25,11 @@ namespace Automation.Pages
 
         #endregion
 
-        public static string firstName = Faker.Name.First();
-        public static string middleName = Faker.Name.Middle();
-        public static string lastName = Faker.Name.Last();
-        public static string emailAddress = Faker.Internet.Email();
-        public static string helloText = "Hello, " + firstName + " " + middleName + " " + lastName + "!";
+        private static string firstName = Faker.Name.First();
+        private static string middleName = Faker.Name.Middle();
+        private static string lastName = Faker.Name.Last();
+        private static string emailAddress = Faker.Internet.Email();
+        private static string helloText = "Hello, " + firstName + " " + middleName + " " + lastName + "!";
 
         public void InsertCredentials()
         {
@@ -37,8 +37,8 @@ namespace Automation.Pages
             _middleNameField.ActionSendKeys(middleName);
             _lastNameField.ActionSendKeys(lastName);
             _emailField.ActionSendKeys(emailAddress);
-            _passwordField.ActionSendKeys(lastName);
-            _confirmPasswordField.ActionSendKeys(lastName);
+            _passwordField.ActionSendKeys(Constants.RANDOM_PASSWORD);
+            _confirmPasswordField.ActionSendKeys(Constants.RANDOM_PASSWORD);
             _newsletterCheckbox.ActionClick();
         }
 

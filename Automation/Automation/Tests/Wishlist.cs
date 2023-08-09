@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using Automation.Helpers.Enums;
+using MsTests.Helpers.Enums;
 
 /*[assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]*/
@@ -22,34 +24,24 @@ namespace Automation.Tests
         {
             base.Before();
 
-            Pages.HomePage.GoToLoginPage();
-
-            Pages.LoginPage.InsertCredentials();
-
-            Pages.LoginPage.SubmitLogin();
-
+            Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
+            Pages.LoginPage.InsertCredentialsAndLogin();
             Pages.HomePage.GoToHomepage();
         }
 
         [TestMethod]
         public void AddtoWishlistSimpleProductTest()
         {
-
-            Pages.HomePage.GoToPrivateSales();
-
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
             productAddedtoWishlist = Pages.CategoryPage.GetProductName();
-
             Pages.CategoryPage.AddProductToWishlist();
-
             Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
-
             Pages.WishlistPage.IsProductInWishlist(productAddedtoWishlist).Should().BeTrue();
-
         }
         [TestCleanup]
-        public void AddtoWishlistSimpleProductCleanup() 
+        public void AddtoWishlistSimpleProductCleanup()
         {
             Pages.WishlistPage.RemoveProductFromWishlist(productAddedtoWishlist);
-        }
+        } 
     }
 }

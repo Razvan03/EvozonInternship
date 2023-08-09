@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using MsTests.Helpers.Enums;
 
 /*[assembly: Parallelize(Workers = 4,
     Scope = ExecutionScope.MethodLevel)]*/
@@ -27,7 +28,9 @@ namespace Automation.Tests
 
             productAddedToCart = Pages.ProductDetailPage.GetProductName();
 
-            Pages.ProductDetailPage.AddToCartConfigurableProduct();
+            Pages.ProductDetailPage.SelectItemColor(Color.Black);
+            Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 
@@ -38,7 +41,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartDigitalProductTest()
         {
-            Pages.HomePage.GoToBooksAndMusic();
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
 
             Pages.CategoryPage.GoToDigitalProductDetailPage();
 
@@ -57,7 +60,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartSimpleProductTest()
         {
-            Pages.HomePage.GoToPrivateSales();
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
             Pages.CategoryPage.GoToSimpleProductDetailPage();
 
@@ -65,7 +68,7 @@ namespace Automation.Tests
 
             Pages.ProductDetailPage.ChangeQty();
 
-            Pages.ProductDetailPage.AddToCartSimpleProduct();
+            Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
 

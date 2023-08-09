@@ -21,16 +21,12 @@ namespace Automation.Pages
 
         #endregion
 
-        public void InsertCredentials()
+        public void InsertCredentialsAndLogin()
         {
             _emailField.ActionSendKeys(Constants.email);
             _passwordField.ActionSendKeys(Constants.password);
-        }
-        public void SubmitLogin()
-        {
             _loginButton.ActionClick();
         }
-
         public bool IsUserLoggedIn()
         {
             return _welcomeText.GetText() == Constants.myWelcomeText;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using Automation.Helpers.Enums;
 
 namespace Automation.Tests
 {
@@ -14,13 +15,11 @@ namespace Automation.Tests
     public class Login : BaseTest
     {
         [TestMethod]
-        public void LoginTest()
+        public void LoginValidTest()
         {
-            Pages.HomePage.GoToLoginPage();
+            Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
 
-            Pages.LoginPage.InsertCredentials();
-
-            Pages.LoginPage.SubmitLogin();
+            Pages.LoginPage.InsertCredentialsAndLogin();
 
             Pages.LoginPage.IsUserLoggedIn().Should().BeTrue();
 
