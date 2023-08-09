@@ -33,8 +33,8 @@ namespace Automation.Tests
         public void AddtoWishlistSimpleProductTest()
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
-            productAddedtoWishlist = Pages.CategoryPage.GetProductName();
-            Pages.CategoryPage.AddProductToWishlist();
+            //productAddedtoWishlist = Pages.ProductsPage.GetProductName();
+            //Pages.ProductsPage.AddProductToWishlist();
             Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
             Pages.WishlistPage.IsProductInWishlist(productAddedtoWishlist).Should().BeTrue();
         }
