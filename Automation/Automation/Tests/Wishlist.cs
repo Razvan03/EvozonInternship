@@ -27,19 +27,35 @@ namespace Automation.Tests
             Pages.LoginPage.InsertCredentialsAndLogin();
         }
 
-        [TestMethod]
-        public void AddProductToWishlistFromProductsPage()
+        public static IEnumerable<object[]> WishlistData()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
-            Pages.ProductsPage.AddProductToWishlist(Constants.WISHLIST_PRODUCT);
-
-            Pages.WishlistPage.IsConfirmMessageTrue(Constants.WISHLIST_PRODUCT).Should().BeTrue();
-            Pages.WishlistPage.IsProductInWishlist(Constants.WISHLIST_PRODUCT).Should().BeTrue();
+            yield return new object[] { Category.VIP, null, "Broad St. Flapover Briefcase" };
+            yield return new object[] { Category.WOMEN, Subcategory.Women.NEW_ARRIVALS, "Elizabeth Knit Top" };
+            yield return new object[] { Category.MEN, Subcategory.Men.SHIRTS, "White Shirt" };
+            yield return new object[] { Category.ACCESSORIES, Subcategory.Accessories.SHOES, "Suede Loafer, Navy" };
+            yield return new object[] { Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC, "Alice in Wonderland" };
         }
-        [TestCleanup]
-        public void AddtoWishlistSimpleProductCleanup()
+
+        [DynamicData(nameof(WishlistData), DynamicDataSourceType.Method)]
+        [TestMethod]
+        public void AddProductToWishlistFromProductsPage(Category category, Enum subcategory, string productName)
         {
-            Pages.WishlistPage.RemoveProductFromWishlist(Constants.WISHLIST_PRODUCT);
-        } 
+            Pages.HomePage.GoToSubcategoryFromDropdown(category, subcategory);
+            Pages.ProductsPage.AddProductToWishlist(productName);
+
+            Pages.WishlistPage.IsConfirmMessageTrue(productName).Should().BeTrue();
+            Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
+        }
+        
+        [DataRow("Broad St. Flapover Briefcase")]
+        [DataRow("Elizabeth Knit Top")]
+        [DataRow("White Shirt")]
+        [DataRow("Suede Loafer, Navy")]
+        [DataRow("Alice in Wonderland")]
+        [TestCleanup]
+        public void AddtoWishlistSimpleProductCleanup(string productName)
+        {
+            Pages.WishlistPage.RemoveProductFromWishlist(productName);
+        }
     }
 }

@@ -21,12 +21,7 @@ namespace Automation.Pages
         private readonly By _briefcaseProduct = By.CssSelector("#wishlist-table tbody tr h3 a[title=\"Broad St. Flapover Briefcase\"]");
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
         #endregion
-
-        public string GetConfirmMessage()
-        {
-            return _confirmMessage.GetText();
-        }
-
+        
         public bool IsConfirmMessageTrue(string productAdded)
         {
             return _confirmMessage.GetText().Contains(productAdded);
