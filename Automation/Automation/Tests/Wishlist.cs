@@ -43,7 +43,5 @@ namespace Automation.Tests
         {
             Pages.WishlistPage.RemoveProductFromWishlist(productAddedtoWishlist);
         } 
-
-        //commit
     }
 }
