@@ -33,5 +33,7 @@ namespace Automation.Tests
         public static CheckoutPaymentPage CheckoutPaymentPage => PageHelpers.InitPage(new CheckoutPaymentPage());
 
         public static CheckoutOrderReviewPage CheckoutOrderReviewPage => PageHelpers.InitPage(new CheckoutOrderReviewPage());
+
+        public static PlaceOrderSuccess PlaceOrderSuccess => PageHelpers.InitPage(new PlaceOrderSuccess());
     }
 }

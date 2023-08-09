@@ -15,50 +15,64 @@ namespace Automation.Pages.CheckoutPage
 
         #region Selectors
 
-        private readonly By _userName = By.CssSelector("#billing-progress-opcheckout address");
-        private readonly By _userAddress = By.CssSelector("#billing-progress-opcheckout address :first-child");
-        private readonly By _userCityStatePostal = By.CssSelector("#billing-progress-opcheckout address :nth-child(2)");
-        private readonly By _userCountry = By.CssSelector("#billing-progress-opcheckout address :nth-child(3)");
-        private readonly By _userPhoneNumber = By.CssSelector("#billing-progress-opcheckout address :nth-child(4)");
-        private readonly By _productName = By.CssSelector("h3.product-name");
-        private readonly By _productAttributes = By.CssSelector("td .item-options");
-        private readonly By _productQty = By.CssSelector("[data-rwd-label=\"Qty\"]");
+        private readonly By _userInfo = By.CssSelector("#billing-progress-opcheckout address");
+        private readonly By _productAttributes = By.CssSelector("td .item-options dd");
+        private readonly By _placeOrderButton = By.CssSelector("[title=\"Place Order\"]");
+        private readonly By _productName = By.CssSelector("tr .product-name");
+
 
         #endregion
 
-        public bool AreBillingDetailsTrue(BillingInformation info)
+        public BillingInformation GetBillingInformation()
         {
-            string[] cityStatePostal = _userCityStatePostal.GetAttribute("innerText").Split(',');
+            var fullAddressText = _userInfo.GetText();
+            var billingInformationList = fullAddressText.Split(new[] { "\r\n" }, StringSplitOptions.None).ToList();
 
-            if (_userName.GetText() != $"{info.FirstName} {info.MiddleName} {info.LastName}")
-                return false;
+            var names = billingInformationList[0].Split(' ');
+            var cityStatePostal = billingInformationList[2].Split(',');
+            var city = cityStatePostal[0].Trim();
+            var state = cityStatePostal[1].Trim();
+            var postalCode = cityStatePostal[2].Trim(); 
+            var telephone = billingInformationList[4].Substring(3).Trim();
 
-            if(_userAddress.GetText() != info.Address)
-                return false;
+            return new BillingInformation
+            {
+                FirstName = names[0],
+                MiddleName = names[1],
+                LastName = names[2],
+                Address = billingInformationList[1],
+                City = city,
+                State = state,
+                PostalCode = postalCode,
+                Country = billingInformationList[3],
+                Telephone = telephone
+            };
 
-            if (cityStatePostal[0].Trim() != info.City)
-                return false;
-
-            if (cityStatePostal[1].Trim() != info.State)
-                return false;
-
-            if (cityStatePostal[2].Trim() != info.PostalCode)
-                return false;
-            if(_userCountry.GetText() != info.Country)
-                return false;
-            if (!(_userPhoneNumber.GetText().Contains(info.Telephone)))
-                return false;
-            return true;
         }
 
-        public bool AreProductAttributesCorrect(string color,string size,string quantity)
+        public List<string> GetProductAttributes()
         {
-            var c = _productAttributes.GetElements().First(i => i.GetAttribute("innerText") == color);
-            var s = _productAttributes.GetElements().First(i => i.GetAttribute("innerText") == size);
-            var q = _productQty.GetText() == quantity;
-            return _productAttributes.GetElements().Any(i => i.Text == color) &&
-                _productAttributes.GetElements().Any(i => i.Text == size) &&
-                _productQty.GetText()==quantity;
+            var attributesElements = _productAttributes.GetElements();
+            var attributesList = new List<string>();
+
+            foreach (var element in attributesElements)
+            {
+                attributesList.Add(element.Text.Trim());
+            }
+
+            return attributesList;
+        }
+
+        public string GetProductName()
+        {
+            return _productName.GetText();
+        }
+
+        
+
+        public void PlaceOrder()
+        {
+            _placeOrderButton.ActionClick();
         }
     }
 }

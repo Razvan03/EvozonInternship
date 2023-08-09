@@ -15,7 +15,8 @@ namespace Automation.Pages.CheckoutPage
 
         #region Selectors
 
-        private readonly By _shippingMethodCheckbox = By.CssSelector("[for=\"s_method_freeshipping_freeshipping\"]");
+        private readonly By _freeShippingMethodCheckbox = By.CssSelector("[for=\"s_method_freeshipping_freeshipping\"]");
+        private readonly By _shippingMethodCheckboxList = By.CssSelector(".sp-methods label");
         private readonly By _continueFromShippingButton = By.CssSelector("#shipping-method-buttons-container button");
         private readonly By _waitSpinner = By.CssSelector("#shipping-method-please-wait[style=\"\"]");
 
@@ -23,8 +24,10 @@ namespace Automation.Pages.CheckoutPage
 
         public void SelectShippingMethod()
         {   
-            if (_shippingMethodCheckbox.IsElementPresent())
-                _shippingMethodCheckbox.ActionClick();
+            /*if (_freeShippingMethodCheckbox.IsElementPresent())
+                _freeShippingMethodCheckbox.ActionClick();
+            else*/
+                _shippingMethodCheckboxList.GetElements().First().Click();
 
             _continueFromShippingButton.ActionClick();
 

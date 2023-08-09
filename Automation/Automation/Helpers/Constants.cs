@@ -18,5 +18,6 @@ namespace Automation.Helpers
 
         public static string ADMIN_USERNAME = "testuser";
         public static string ADMIN_PASSWORD = "password123";
+        public static string OrderPlacedWithSuccessMessage = "Your order has been received.";
     }
 }

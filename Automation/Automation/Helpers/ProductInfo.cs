@@ -12,7 +12,6 @@ namespace Automation.Helpers
         public string Name { get; set; }
         public Color Color { get; set; }
         public ClothesSize Size { get; set; }
-
         public int quantity { get; set; }
     }
 }
