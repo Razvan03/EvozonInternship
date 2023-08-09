@@ -15,6 +15,7 @@ namespace Automation.Helpers
         public const string LOGIN_HELLO_MESSAGE = "Hello, Roman Razvan!";
         public const string LOGIN_WELCOME_MESSAGE = "WELCOME, ROMAN RAZVAN!";
         public const string WELCOME_MESSAGE = "WELCOME";
+        public const string LOGOUT_MESSAGE = "YOU ARE NOW LOGGED OUT";
         public static string RANDOM_EMAIL = Internet.Email();
         public static string RANDOM_PASSWORD = StringFaker.Randomize(
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[{]};:'\",<.>/?");

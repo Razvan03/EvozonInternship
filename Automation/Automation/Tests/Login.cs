@@ -30,6 +30,8 @@ namespace Automation.Tests
             Pages.LoginPage.InsertCredentialsAndLogin(email, password);
             Pages.AccountPage.IsUserLoggedIn().Should().BeTrue();
             Pages.HomePage.GetWelcomeMessage().Should().Be(Constants.LOGIN_WELCOME_MESSAGE);
+            Pages.HomePage.IsAccountOptionAvailable(AccountOption.LOG_IN).Should().BeFalse();
+            Pages.HomePage.IsAccountOptionAvailable(AccountOption.LOG_OUT).Should().BeTrue();
         }
 
         public static IEnumerable<object[]> ErrorMessageData()
@@ -49,6 +51,8 @@ namespace Automation.Tests
             Pages.LoginPage.IsErrorMessageDisplayed().Should().BeTrue();
             Pages.AccountPage.IsUserLoggedIn().Should().BeFalse();
             Pages.HomePage.GetWelcomeMessage().Should().Be(Constants.WELCOME_MESSAGE);
+            Pages.HomePage.IsAccountOptionAvailable(AccountOption.LOG_OUT).Should().BeFalse();
+            Pages.HomePage.IsAccountOptionAvailable(AccountOption.LOG_IN).Should().BeTrue();
         }
 
         public static IEnumerable<object[]> ValidationAdviceData()
@@ -68,6 +72,8 @@ namespace Automation.Tests
             Pages.LoginPage.IsValidationAdviceDisplayed().Should().BeTrue();
             Pages.AccountPage.IsUserLoggedIn().Should().BeFalse();
             Pages.HomePage.GetWelcomeMessage().Should().Be(Constants.WELCOME_MESSAGE);
+            Pages.HomePage.IsAccountOptionAvailable(AccountOption.LOG_OUT).Should().BeFalse();
+            Pages.HomePage.IsAccountOptionAvailable(AccountOption.LOG_IN).Should().BeTrue();
         }
     }
 }
