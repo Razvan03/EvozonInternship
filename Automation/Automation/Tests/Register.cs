@@ -16,7 +16,7 @@ namespace Automation.Tests
     [TestClass]
     public class Register : BaseTest
     {
-        public static IEnumerable<object> RegisterData()
+        public static IEnumerable<object[]> RegisterData()
         {
             yield return new object[] { Faker.Name.First(), Faker.Name.Middle(), Faker.Name.Last(), Faker.Internet.Email() };
         }

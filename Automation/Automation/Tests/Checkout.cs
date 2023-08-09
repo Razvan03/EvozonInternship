@@ -27,17 +27,15 @@ namespace Automation.Tests
 
             Pages.CartPage.ProceedToCheckout();
 
-            Pages.CheckoutPage.ContinueToCheckout();
+            Pages.CheckoutBillingPage.ContinueToCheckoutAsGuest();
 
-            Pages.CheckoutPage.InsertBillingInfo();
+            Pages.CheckoutBillingPage.CompleteBillingPage();
 
-            Pages.CheckoutPage.ContinueToNextStep();
+            Pages.CheckoutShippingPage.CompleteShippingPage();
 
-            Pages.CheckoutPage.SelectShippingMethod();
+            Pages.CheckoutShippingMethodPage.CompleteShippingMethodPage();
 
-            Pages.CheckoutPage.ContinueToNextStep();
-
-            Console.ReadKey();
+            Pages.CheckoutPaymentPage.CompletePaymentPage();
         }
     }
 }

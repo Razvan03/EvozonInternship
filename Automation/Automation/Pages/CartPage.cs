@@ -16,6 +16,11 @@ namespace Automation.Pages
         private readonly By _removeButtons = By.CssSelector(".product-cart-remove.last a");
         private readonly By _proceedToCheckoutButton = By.CssSelector("li[class] .btn-checkout");
 
+        public void goToSelectedProduct(string productName)
+        {
+
+        }
+
         public bool IsConfirmMessageTrue(string productAdded)
         {
             return _confirmMessage.GetText().Contains(productAdded);

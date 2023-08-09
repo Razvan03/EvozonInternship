@@ -2,23 +2,23 @@
 using Automation.Helpers;
 using MsTests.Helpers.Enums;
 
-
+/*[assembly: Parallelize(Workers = 4,
+    Scope = ExecutionScope.MethodLevel)]*/
 namespace Automation.Tests
 {
     [TestClass]
     public class Cart : BaseTest
     {
-        private TestContext testContext { get; set; }
+        public string productName;
 
-
-        [DataRow("Chelsea Tee")]
         [TestMethod]
-        public void AddtoCartConfigurableProductTest(string productName)
+        public void AddtoCartConfigurableProductTest()
         {
-            testContext.Properties["ProductName"] = productName;
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
 
-            Pages.ProductsPage.GoToProductDetailsPage(productName);
+            productName = "Chelsea Tee";
+
+            Pages.ProductsPage.GoToProductDetailsPage("Chelsea Tee");
 
             Pages.ProductDetailPage.SelectItemColor(Color.Black);
             Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
@@ -29,12 +29,12 @@ namespace Automation.Tests
             Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
         }
 
-        [DataRow("A Tale of Two Cities")]
         [TestMethod]
-        public void AddtoCartDigitalProductTest(string productName)
+        public void AddtoCartDigitalProductTest()
         {
-            testContext.Properties["ProductName"] = productName;
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
+
+            productName = "A Tale of Two Cities";
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
@@ -50,13 +50,12 @@ namespace Automation.Tests
 
         }
 
-        [DataRow("Broad St. Flapover Briefcase")]
         [TestMethod]
-        public void AddtoCartSimpleProductTest(string productName)
+        public void AddtoCartSimpleProductTest()
         {
-            testContext.Properties["ProductName"] = productName;
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
+            productName = "Broad St. Flapover Briefcase";
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
@@ -72,9 +71,7 @@ namespace Automation.Tests
         [TestCleanup]
         public void AddtoCartTestCleanup()
         {
-            string productName = (string)testContext.Properties["ProductName"];
             Pages.CartPage.RemoveProductFromCart(productName);
-            base.After();
         }
     }
 }

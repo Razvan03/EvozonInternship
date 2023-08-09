@@ -8,6 +8,7 @@ using Automation.Helpers;
 using MsTests.Pages;
 using SeleniumExtras.PageObjects;
 using NsTestFrameworkUI.Pages;
+using Automation.Pages.CheckoutPage;
 
 namespace Automation.Tests
 {
@@ -23,6 +24,12 @@ namespace Automation.Tests
         public static AdminPage AdminPage => PageHelpers.InitPage(new AdminPage());
         public static CategoryPage CategoryPage => PageHelpers.InitPage(new CategoryPage());
         public static ProductsPage ProductsPage => PageHelpers.InitPage(new ProductsPage());
-        public static CheckoutPage CheckoutPage => PageHelpers.InitPage(new CheckoutPage());
+        public static CheckoutBillingPage CheckoutBillingPage => PageHelpers.InitPage(new CheckoutBillingPage());
+
+        public static CheckoutShippingPage CheckoutShippingPage => PageHelpers.InitPage(new CheckoutShippingPage());
+
+        public static CheckoutShippingMethodPage CheckoutShippingMethodPage => PageHelpers.InitPage(new CheckoutShippingMethodPage());
+
+        public static CheckoutPaymentPage CheckoutPaymentPage => PageHelpers.InitPage(new CheckoutPaymentPage());
     }
 }
