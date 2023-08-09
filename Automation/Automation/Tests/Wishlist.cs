@@ -24,7 +24,7 @@ namespace Automation.Tests
             base.Before();
 
             Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
-            Pages.LoginPage.InsertCredentialsAndLogin();
+            Pages.LoginPage.InsertCredentialsAndLogin(Constants.VALID_EMAIL, Constants.VALID_PASSWORD);
         }
 
         public static IEnumerable<object[]> WishlistData()

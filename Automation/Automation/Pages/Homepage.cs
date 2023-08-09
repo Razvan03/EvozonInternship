@@ -31,6 +31,8 @@ namespace Automation.Pages
         private readonly By _categoryList = By.CssSelector(".level0 > a, .level0.has-children > a");
         private readonly By _subcategoryList = By.CssSelector(".level1 a");
 
+        private readonly By _welcomeMessage = By.CssSelector(".welcome-msg");
+
         #endregion
 
         public void GoToAccountDropdownOption(AccountOption option)
@@ -83,6 +85,9 @@ namespace Automation.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-
+        public string GetWelcomeMessage()
+        {
+            return _welcomeMessage.GetText();
+        }
     }
 }

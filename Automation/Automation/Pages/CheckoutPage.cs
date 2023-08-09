@@ -19,7 +19,7 @@ namespace Automation.Pages
         private readonly By _firstNameField = By.Id("billing:firstname");
         private readonly By _middleNameField = By.Id("billing:middlename");
         private readonly By _lastNameField = By.Id("billing:lastname");
-        private readonly By _emailAddressField = By.Id("billing:email");
+        private readonly By _emailAddressField = By.Id("billing:VALID_EMAIL");
         private readonly By _addressField = By.Id("billing:street1");
         private readonly By _cityField = By.Id("billing:city");
         private readonly By _postalCodeField = By.Id("billing:postcode");

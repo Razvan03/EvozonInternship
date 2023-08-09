@@ -17,19 +17,26 @@ namespace Automation.Pages
         private readonly By _emailField = By.Id("email");
         private readonly By _passwordField = By.Id("pass");
         private readonly By _loginButton = By.Id("send2");
-        private readonly By _welcomeText = By.CssSelector("p.hello strong");
+        private readonly By _errorMessage = By.CssSelector(".error-msg");
+        private readonly By _validationAdviceMessage = By.CssSelector(".validation-advice");
 
         #endregion
 
-        public void InsertCredentialsAndLogin()
+        public void InsertCredentialsAndLogin(string userEmail, string password)
         {
-            _emailField.ActionSendKeys(Constants.email);
-            _passwordField.ActionSendKeys(Constants.password);
+            _emailField.ActionSendKeys(userEmail);
+            _passwordField.ActionSendKeys(password);
             _loginButton.ActionClick();
         }
-        public bool IsUserLoggedIn()
+
+        public bool IsErrorMessageDisplayed()
         {
-            return _welcomeText.GetText() == Constants.myWelcomeText;
+            return _errorMessage.IsElementPresent();
+        }
+
+        public bool IsValidationAdviceDisplayed()
+        {
+            return _validationAdviceMessage.IsElementPresent();
         }
     }
 }
