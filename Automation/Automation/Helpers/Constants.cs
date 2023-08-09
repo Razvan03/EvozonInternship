@@ -18,5 +18,7 @@ namespace Automation.Helpers
 
         public static string ADMIN_USERNAME = "testuser";
         public static string ADMIN_PASSWORD = "password123";
+
+        public static string WISHLIST_PRODUCT = "Broad St. Flapover Briefcase";
     }
 }
