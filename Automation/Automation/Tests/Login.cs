@@ -20,9 +20,7 @@ namespace Automation.Tests
             Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
 
             Pages.LoginPage.InsertCredentialsAndLogin();
-
             Pages.LoginPage.IsUserLoggedIn().Should().BeTrue();
-
         }
     }
 }

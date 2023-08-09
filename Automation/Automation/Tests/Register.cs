@@ -18,7 +18,7 @@ namespace Automation.Tests
     public class Register : BaseTest
     {
         [TestMethod]
-        public void RegisterTest()
+        public void RegisterValidTest()
         {
             Pages.HomePage.GoToAccountDropdownOption(AccountOption.REGISTER);
             Pages.RegisterPage.InsertCredentials();

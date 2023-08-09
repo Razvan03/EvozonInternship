@@ -33,13 +33,6 @@ namespace Automation.Pages
 
         #endregion
 
-        public void SelectItemFromNewProducts(string productName)
-        {
-            var newProductsList = _newProductsItems.GetElements();
-            var SelectedItem = newProductsList.First(i => i.GetAttribute("title") == productName);
-            SelectedItem.Click();
-        }
-
         public void GoToAccountDropdownOption(AccountOption option)
         {
             _accountButton.ActionClick();
@@ -55,7 +48,6 @@ namespace Automation.Pages
 
         public void GoToSubcategoryFromDropdown(Category categoryTitle, Enum subcategoryTitle)
         {
-
             // get all category elements
             var categories = _categoryList.GetElements();
             // find the category with the matching title
@@ -90,5 +82,7 @@ namespace Automation.Pages
             _searchButton.ActionClick();
             WaitHelpers.WaitForDocumentReadyState();
         }
+
+
     }
 }

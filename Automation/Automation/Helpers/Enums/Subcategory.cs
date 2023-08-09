@@ -52,5 +52,33 @@ namespace MsTests.Helpers.Enums
             [System.ComponentModel.Description("Decorative Accents")]
             DECORATIVE_ACCENTS
         }
+
+        public enum Accessories
+        {
+            [System.ComponentModel.Description("View All Accessories")]
+            VIEW_ALL,
+            [System.ComponentModel.Description("Eyewear")]
+            EYEWEAR,
+            [System.ComponentModel.Description("Jewelry")]
+            JEWELRY,
+            [System.ComponentModel.Description("Shoes")]
+            SHOES,
+            [System.ComponentModel.Description("Bags & Luggage")]
+            BAGS_AND_LUGGAGE,
+        }
+
+        public enum Sale
+        {
+            [System.ComponentModel.Description("View All Sale")]
+            VIEW_ALL,
+            [System.ComponentModel.Description("Women")]
+            WOMEN,
+            [System.ComponentModel.Description("Men")]
+            MEN,
+            [System.ComponentModel.Description("Accessories")]
+            ACCESSORIES,
+            [System.ComponentModel.Description("Home & Decor")]
+            HOME_AND_DECOR,
+        }
     }
 }
