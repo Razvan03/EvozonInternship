@@ -20,10 +20,10 @@ namespace Automation.Tests
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailPage.SelectItemColor(Color.Black);
-            Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
-            Pages.ProductDetailPage.ChangeQty();
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.SelectItemColor(Color.Black);
+            Pages.ProductDetailsPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailsPage.ChangeQty();
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
             Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
@@ -38,11 +38,11 @@ namespace Automation.Tests
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailPage.ChangeQty();
+            Pages.ProductDetailsPage.ChangeQty();
 
-            Pages.ProductDetailPage.CheckDigitalProduct();
+            Pages.ProductDetailsPage.CheckDigitalProduct();
 
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
 
@@ -59,9 +59,9 @@ namespace Automation.Tests
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailPage.ChangeQty();
+            Pages.ProductDetailsPage.ChangeQty();
 
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
 

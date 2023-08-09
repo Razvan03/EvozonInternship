@@ -48,6 +48,7 @@ namespace Automation.Pages
             {
                 throw new ArgumentException($"No product with name: {productName}");
             }
+
             var index = products.IndexOf(product);
             _addToWishlistButtonList.GetElements()[index].Click();
         }

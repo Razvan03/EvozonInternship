@@ -16,12 +16,17 @@ namespace Automation.Pages
     {
 
         #region Selectors
+
         private readonly By _wishlistProductNames = By.CssSelector("#wishlist-table tbody tr h3 a");
         private readonly By _wishlistRemoveButtons = By.CssSelector("#wishlist-table tbody tr td[class*=\"remove\"] a");
-        private readonly By _briefcaseProduct = By.CssSelector("#wishlist-table tbody tr h3 a[title=\"Broad St. Flapover Briefcase\"]");
+
+        private readonly By _briefcaseProduct =
+            By.CssSelector("#wishlist-table tbody tr h3 a[title=\"Broad St. Flapover Briefcase\"]");
+
         private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
+
         #endregion
-        
+
         public bool IsConfirmMessageTrue(string productAdded)
         {
             return _confirmMessage.GetText().Contains(productAdded);
@@ -34,7 +39,7 @@ namespace Automation.Pages
 
         }
 
-        public void RemoveProductFromWishlist(string productName) 
+        public void RemoveProductFromWishlist(string productName)
         {
             var wishlistElementsName = _wishlistProductNames.GetElements();
             var removeButtons = _wishlistRemoveButtons.GetElements();
@@ -56,6 +61,14 @@ namespace Automation.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        //commit
+        public void RemoveAllProductsFromWishlist()
+        {
+            while (_wishlistRemoveButtons.GetElements().Count > 0)
+            {
+                _wishlistRemoveButtons.ActionClick();
+                Browser.WebDriver.SwitchTo().Alert().Accept();
+            }
+        }
     }
 }
+

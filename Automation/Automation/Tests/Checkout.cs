@@ -17,13 +17,13 @@ namespace Automation.Tests
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
             Pages.ProductsPage.GoToProductDetailsPage("Chelsea Tee");
 
-            Pages.ProductDetailPage.ChangeQty();
+            Pages.ProductDetailsPage.ChangeQty();
 
-            //productAddedToCart = Pages.ProductDetailPage.GetProductName();
+            //productAddedToCart = Pages.ProductDetailsPage.GetProductName();
 
-            Pages.ProductDetailPage.SelectItemColor(Color.Black);
-            Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.SelectItemColor(Color.Black);
+            Pages.ProductDetailsPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.ProceedToCheckout();
 

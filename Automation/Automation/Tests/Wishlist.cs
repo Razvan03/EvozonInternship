@@ -40,22 +40,34 @@ namespace Automation.Tests
         [TestMethod]
         public void AddProductToWishlistFromProductsPage(Category category, Enum subcategory, string productName)
         {
+            TestContext.Properties["ProductName"] = productName;
+
             Pages.HomePage.GoToSubcategoryFromDropdown(category, subcategory);
             Pages.ProductsPage.AddProductToWishlist(productName);
 
             Pages.WishlistPage.IsConfirmMessageTrue(productName).Should().BeTrue();
             Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
         }
-        
-        [DataRow("Broad St. Flapover Briefcase")]
-        [DataRow("Elizabeth Knit Top")]
-        [DataRow("White Shirt")]
-        [DataRow("Suede Loafer, Navy")]
-        [DataRow("Alice in Wonderland")]
-        [TestCleanup]
-        public void AddtoWishlistSimpleProductCleanup(string productName)
+
+        [DynamicData(nameof(WishlistData), DynamicDataSourceType.Method)]
+        [TestMethod]
+        public void AddProductToWishlistFromProductDetailsPage(Category category, Enum subcategory, string productName)
         {
-            Pages.WishlistPage.RemoveProductFromWishlist(productName);
+            TestContext.Properties["ProductName"] = productName;
+
+            Pages.HomePage.GoToSubcategoryFromDropdown(category, subcategory);
+            Pages.ProductsPage.GoToProductDetailsPage(productName);
+            Pages.ProductDetailsPage.AddProductToWishlist();
+
+            Pages.WishlistPage.IsConfirmMessageTrue(productName).Should().BeTrue();
+            Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
+        }
+        
+        [TestCleanup]
+        public void Cleanup()
+        {
+            Pages.WishlistPage.RemoveAllProductsFromWishlist();
+            //Pages.WishlistPage.RemoveProductFromWishlist((string)TestContext.Properties["ProductName"]);
         }
     }
 }
