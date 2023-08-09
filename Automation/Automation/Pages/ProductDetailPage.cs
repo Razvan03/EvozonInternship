@@ -32,10 +32,9 @@ namespace Automation.Pages
             _addToCartButton.ActionClick();
         }
 
-        public void AddToCartDigitalProduct()
+        public void CheckDigitalProduct()
         {
             _digitalItemCheckbox.ActionClick();
-            _addToCartButton.ActionClick();
         }
         public void SelectItemColor(Color color)
         {

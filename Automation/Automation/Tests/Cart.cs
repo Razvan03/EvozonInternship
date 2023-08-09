@@ -1,12 +1,4 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentAssertions;
 using Automation.Helpers;
 using MsTests.Helpers.Enums;
 
@@ -17,25 +9,24 @@ namespace Automation.Tests
     [TestClass]
     public class Cart : BaseTest
     {
-        public string productAddedToCart;
+        public string productName;
 
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
-            Pages.HomePage.SelectItemFromNewProducts("Chelsea Tee");
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
 
-            Pages.ProductDetailPage.ChangeQty();
+            productName = "Chelsea Tee";
 
-            productAddedToCart = Pages.ProductDetailPage.GetProductName();
+            Pages.ProductsPage.GoToProductDetailsPage(productName);
 
             Pages.ProductDetailPage.SelectItemColor(Color.Black);
             Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailPage.ChangeQty();
             Pages.ProductDetailPage.AddProductToCart();
 
-            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
-
-            Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
-
+            Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
+            Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
         }
 
         [TestMethod]
@@ -43,17 +34,19 @@ namespace Automation.Tests
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
 
-            Pages.CategoryPage.GoToDigitalProductDetailPage();
+            productName = "A Tale of Two Cities";
 
-            productAddedToCart = Pages.ProductDetailPage.GetProductName();
+            Pages.ProductsPage.GoToProductDetailsPage(productName);
 
             Pages.ProductDetailPage.ChangeQty();
 
-            Pages.ProductDetailPage.AddToCartDigitalProduct();
+            Pages.ProductDetailPage.CheckDigitalProduct();
 
-            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
+            Pages.ProductDetailPage.AddProductToCart();
 
-            Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
+            Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
+
+            Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
 
         }
 
@@ -62,24 +55,23 @@ namespace Automation.Tests
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
-            Pages.CategoryPage.GoToSimpleProductDetailPage();
+            productName = "Broad St. Flapover Briefcase";
 
-            productAddedToCart = Pages.ProductDetailPage.GetProductName();
+            Pages.ProductsPage.GoToProductDetailsPage(productName);
 
             Pages.ProductDetailPage.ChangeQty();
 
             Pages.ProductDetailPage.AddProductToCart();
 
-            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
+            Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
 
-            Pages.CartPage.IsProductInCart(productAddedToCart).Should().BeTrue();
-
+            Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
         }
 
         [TestCleanup]
         public void AddtoCartTestCleanup()
         {
-            Pages.CartPage.RemoveProductFromCart(productAddedToCart);
+            Pages.CartPage.RemoveProductFromCart(productName);
         }
     }
 }
