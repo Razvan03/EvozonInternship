@@ -14,22 +14,10 @@ namespace Automation.Pages.CheckoutPage
         private readonly By _continueToNextStepButton = By.CssSelector("#payment-buttons-container button");
         private readonly By _waitSpinner = By.CssSelector("#payment-please-wait[style=\"\"]");
 
-        public void ContinueToNextStep()
+        public void SelectPayment()
         {
             _continueToNextStepButton.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
-        public void WaitForSpinner()
-        {
             _waitSpinner.WaitForSpinner();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
-        public void CompletePaymentPage()
-        {
-            ContinueToNextStep();
-            WaitForSpinner();
         }
     }
 }

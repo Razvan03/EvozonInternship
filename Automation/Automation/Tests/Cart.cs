@@ -22,7 +22,7 @@ namespace Automation.Tests
 
             Pages.ProductDetailPage.SelectItemColor(Color.Black);
             Pages.ProductDetailPage.SelectItemSize(ClothesSize.M);
-            Pages.ProductDetailPage.ChangeQty();
+            Pages.ProductDetailPage.ChangeQty("2");
             Pages.ProductDetailPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
@@ -38,7 +38,7 @@ namespace Automation.Tests
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailPage.ChangeQty();
+            Pages.ProductDetailPage.ChangeQty("2");
 
             Pages.ProductDetailPage.CheckDigitalProduct();
 
@@ -59,7 +59,7 @@ namespace Automation.Tests
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailPage.ChangeQty();
+            Pages.ProductDetailPage.ChangeQty("2");
 
             Pages.ProductDetailPage.AddProductToCart();
 

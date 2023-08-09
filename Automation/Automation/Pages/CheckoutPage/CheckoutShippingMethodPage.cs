@@ -25,25 +25,10 @@ namespace Automation.Pages.CheckoutPage
         {   
             if (_shippingMethodCheckbox.IsElementPresent())
                 _shippingMethodCheckbox.ActionClick();
-        }
 
-        public void ContinueToNextStep()
-        {
             _continueFromShippingButton.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
 
-        public void WaitForSpinner()
-        {
             _waitSpinner.WaitForSpinner();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
-        public void CompleteShippingMethodPage()
-        {
-            SelectShippingMethod();
-            ContinueToNextStep();
-            WaitForSpinner();
         }
     }
 }

@@ -22,9 +22,9 @@ namespace Automation.Pages
             return _productTitle.GetAttribute("innerText");
         }
 
-        public void ChangeQty()
+        public void ChangeQty(string number)
         {
-            _productQty.ActionSendKeys("2");
+            _productQty.ActionSendKeys(number);
         }
 
         public void AddProductToCart()

@@ -7,6 +7,7 @@ using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using NsTestFrameworkUI.Helpers;
+using Automation.Helpers;
 
 namespace Automation.Pages.CheckoutPage
 {
@@ -43,38 +44,23 @@ namespace Automation.Pages.CheckoutPage
             _continueToCheckoutButton.ActionClick();
         }
 
-        public void InsertBillingInfo()
+        public void InsertBillingInformation(BillingInformation info)
         {
-            _firstNameField.ActionSendKeys(Faker.Name.First());
-            _middleNameField.ActionSendKeys(Faker.Name.Middle());
-            _lastNameField.ActionSendKeys(Faker.Name.Last());
-            _emailAddressField.ActionSendKeys(Faker.Internet.Email());
-            _addressField.ActionSendKeys(Faker.Address.StreetAddress());
-            _cityField.ActionSendKeys(Faker.Address.City());
-            _postalCodeField.ActionSendKeys(Faker.Address.ZipCode());
-            _telephoneField.ActionSendKeys(Faker.Phone.Number());
-            _countryField.SelectFromDropdownByText("Romania");
-            _stateField.SelectFromDropdownByText("Suceava");
+            _firstNameField.ActionSendKeys(info.FirstName);
+            _middleNameField.ActionSendKeys(info.MiddleName);
+            _lastNameField.ActionSendKeys(info.LastName);
+            _emailAddressField.ActionSendKeys(info.Email);
+            _addressField.ActionSendKeys(info.Address);
+            _cityField.ActionSendKeys(info.City);
+            _postalCodeField.ActionSendKeys(info.PostalCode);
+            _telephoneField.ActionSendKeys(info.Telephone);
+            _countryField.SelectFromDropdownByText(info.Country);
+            _stateField.SelectFromDropdownByText(info.State);
             _shipToDifferentAddressCheckbox.ActionClick();
-        }
 
-        public void ContinueToNextStep()
-        {
             _continueToNextStepButton.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
 
-        public void WaitForSpinner()
-        {
             _waitSpinner.WaitForSpinner();
-            WaitHelpers.WaitForDocumentReadyState();
-        }
-
-        public void CompleteBillingPage()
-        {
-            InsertBillingInfo();
-            ContinueToNextStep();
-            WaitForSpinner();
         }
     }
 }
