@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Automation.Helpers;
+using FluentAssertions;
 using MsTests.Helpers.Enums;
 
 namespace Automation.Tests
@@ -15,7 +16,7 @@ namespace Automation.Tests
         public void GoThroughMainCategories()
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
-            Pages.CategoryPage.IsCategoryTitleDisplayed();
+            Pages.CategoryPage.IsCategoryTitleDisplayed().Should().BeTrue();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.WOMEN);
 
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.VIEW_ALL);
