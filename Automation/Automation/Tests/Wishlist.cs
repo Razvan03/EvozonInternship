@@ -18,7 +18,6 @@ namespace Automation.Tests
     [TestClass]
     public class Wishlist : BaseTest
     {
-        public string productAddedtoWishlist;
         [TestInitialize]
         public override void Before()
         {
@@ -26,22 +25,21 @@ namespace Automation.Tests
 
             Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
             Pages.LoginPage.InsertCredentialsAndLogin();
-            Pages.HomePage.GoToHomepage();
         }
 
         [TestMethod]
-        public void AddtoWishlistSimpleProductTest()
+        public void AddProductToWishlistFromProductsPage()
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
-            //productAddedtoWishlist = Pages.ProductsPage.GetProductName();
-            //Pages.ProductsPage.AddProductToWishlist();
-            Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
-            Pages.WishlistPage.IsProductInWishlist(productAddedtoWishlist).Should().BeTrue();
+            Pages.ProductsPage.AddProductToWishlist(Constants.WISHLIST_PRODUCT);
+
+            Pages.WishlistPage.IsConfirmMessageTrue(Constants.WISHLIST_PRODUCT).Should().BeTrue();
+            Pages.WishlistPage.IsProductInWishlist(Constants.WISHLIST_PRODUCT).Should().BeTrue();
         }
         [TestCleanup]
         public void AddtoWishlistSimpleProductCleanup()
         {
-            Pages.WishlistPage.RemoveProductFromWishlist(productAddedtoWishlist);
+            Pages.WishlistPage.RemoveProductFromWishlist(Constants.WISHLIST_PRODUCT);
         } 
     }
 }

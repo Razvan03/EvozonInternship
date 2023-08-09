@@ -29,24 +29,22 @@ namespace Automation.Pages
 
         public bool IsConfirmMessageTrue(string productAdded)
         {
-            return _confirmMessage.GetText().ToUpper().Contains(productAdded);
+            return _confirmMessage.GetText().Contains(productAdded);
         }
 
         public bool IsProductInWishlist(string product)
         {
             var wishlistElementsName = _wishlistProductNames.GetElements();
-            return wishlistElementsName.Any(i => i.Text.Equals(product));
+            return wishlistElementsName.Any(i => i.Text.Equals(product.ToUpper()));
 
         }
 
         public void RemoveProductFromWishlist(string productName) 
         {
-            
             var wishlistElementsName = _wishlistProductNames.GetElements();
-
             var removeButtons = _wishlistRemoveButtons.GetElements();
 
-            var elementToRemove = wishlistElementsName.First(i => i.Text == productName);
+            var elementToRemove = wishlistElementsName.First(i => i.Text.Equals(productName.ToUpper()));
             var index = wishlistElementsName.IndexOf(elementToRemove);
 
             removeButtons[index].Click();
