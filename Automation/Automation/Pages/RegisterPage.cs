@@ -25,13 +25,7 @@ namespace Automation.Pages
 
         #endregion
 
-        private static string firstName = Faker.Name.First();
-        private static string middleName = Faker.Name.Middle();
-        private static string lastName = Faker.Name.Last();
-        private static string emailAddress = Faker.Internet.Email();
-        private static string helloText = "Hello, " + firstName + " " + middleName + " " + lastName + "!";
-
-        public void InsertCredentials()
+        public void InsertCredentials(string firstName, string middleName, string lastName, string emailAddress)
         {
             _firstNameField.ActionSendKeys(firstName);
             _middleNameField.ActionSendKeys(middleName);
@@ -47,7 +41,7 @@ namespace Automation.Pages
             _registerButton.ActionClick();
         }
 
-        public bool IsUserRegistered()
+        public bool IsUserRegistered(string helloText)
         {
             return _welcomeText.GetText() == helloText;
         }
