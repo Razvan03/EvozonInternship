@@ -21,15 +21,15 @@ namespace Automation.Pages
         private readonly By _homeLogoButton = By.CssSelector("a.logo");
         private readonly By _accountButton = By.CssSelector("a.skip-link.skip-account");
         private readonly By _accountOptionsDropdown = By.CssSelector("#header-account li a");
-        private readonly By _toLoginButton = By.CssSelector("a[title=\"Log In\"]");
-        private readonly By _toRegisterButton = By.CssSelector("a[title=\"Register\"]");
-        private readonly By _newProductsItems = By.CssSelector("a[class=\"product-image\"]");
 
         private readonly By _searchField = By.Id("search");
         private readonly By _searchButton = By.CssSelector(".search-button");
 
         private readonly By _categoryList = By.CssSelector(".level0 > a, .level0.has-children > a");
         private readonly By _subcategoryList = By.CssSelector(".level1 a");
+
+        private readonly By _welcomeMessage = By.CssSelector(".welcome-msg");
+        private readonly By _pageTitleLabel = By.CssSelector(".page-title");
 
         #endregion
 
@@ -83,6 +83,23 @@ namespace Automation.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
+        public string GetWelcomeMessage()
+        {
+            return _welcomeMessage.GetText();
+        }
+
+        public string GetPageTitleText()
+        {
+            return _pageTitleLabel.GetText();
+        }
+
+        public bool IsAccountOptionAvailable(AccountOption option)
+        {
+            _accountButton.ActionClick();
+            var selectedOption =
+                _accountOptionsDropdown.GetElements().FirstOrDefault(o => o.GetAttribute("title").Equals(option.GetDescription()));
+            return selectedOption != null;
+        }
 
     }
 }

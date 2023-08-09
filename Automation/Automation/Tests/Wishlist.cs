@@ -24,7 +24,7 @@ namespace Automation.Tests
             base.Before();
 
             Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
-            Pages.LoginPage.InsertCredentialsAndLogin();
+            Pages.LoginPage.InsertCredentialsAndLogin(Constants.VALID_EMAIL, Constants.VALID_PASSWORD);
         }
 
         public static IEnumerable<object[]> WishlistData()
@@ -45,7 +45,7 @@ namespace Automation.Tests
             Pages.HomePage.GoToSubcategoryFromDropdown(category, subcategory);
             Pages.ProductsPage.AddProductToWishlist(productName);
 
-            Pages.WishlistPage.IsConfirmMessageTrue(productName).Should().BeTrue();
+            Pages.WishlistPage.GetProductAddedToWishlistConfirmationMessage().Contains(productName).Should().BeTrue();
             Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
         }
 
@@ -59,7 +59,7 @@ namespace Automation.Tests
             Pages.ProductsPage.GoToProductDetailsPage(productName);
             Pages.ProductDetailsPage.AddProductToWishlist();
 
-            Pages.WishlistPage.IsConfirmMessageTrue(productName).Should().BeTrue();
+            Pages.WishlistPage.GetProductAddedToWishlistConfirmationMessage().Contains(productName).Should().BeTrue();
             Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
         }
         
