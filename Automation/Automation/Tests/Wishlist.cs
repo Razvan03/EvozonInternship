@@ -29,22 +29,19 @@ namespace Automation.Tests
             Pages.HomePage.GoToHomepage();
         }
 
-        //[TestMethod]
-        //public void AddtoWishlistSimpleProductTest()
-        //{
-        //    //TODO
-        //    Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
-        //    productAddedtoWishlist = Pages.CategoryPage.GetProductName();
-        //    Pages.CategoryPage.AddProductToWishlist();
-        //    Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
-        //    Pages.WishlistPage.IsProductInWishlist(productAddedtoWishlist).Should().BeTrue();
-        //}
+        [TestMethod]
+        public void AddtoWishlistSimpleProductTest()
+        {
+            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
+            productAddedtoWishlist = Pages.CategoryPage.GetProductName();
+            Pages.CategoryPage.AddProductToWishlist();
+            Pages.WishlistPage.IsConfirmMessageTrue(productAddedtoWishlist).Should().BeTrue();
+            Pages.WishlistPage.IsProductInWishlist(productAddedtoWishlist).Should().BeTrue();
+        }
         [TestCleanup]
         public void AddtoWishlistSimpleProductCleanup()
         {
             Pages.WishlistPage.RemoveProductFromWishlist(productAddedtoWishlist);
         } 
-
-        //commit
     }
 }

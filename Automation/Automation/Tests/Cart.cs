@@ -63,6 +63,8 @@ namespace Automation.Tests
 
             Pages.ProductDetailPage.AddProductToCart();
 
+            Pages.CartPage.IsConfirmMessageTrue(productAddedToCart).Should().BeTrue();
+
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
 
             Pages.CartPage.IsProductInCart(productName).Should().BeTrue();
