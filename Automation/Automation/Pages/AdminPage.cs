@@ -24,19 +24,35 @@ namespace MsTests.Pages
 
         private readonly By _successMessage = By.CssSelector(".messages span");
 
+        private readonly By _menuButtonsList = By.CssSelector(".parent.level0 a");
+
+        private readonly By _ordersButton = By.CssSelector(".level1 a");
+
+        private readonly By _ordersList = By.CssSelector("#sales_order_grid_table tbody tr td[class=\" \"]");
+
         #endregion
 
         public void PerformAdminLogin()
         {
-            Browser.GoTo("http://qa2magento.dev.evozon.com/admin");
+            Browser.GoTo("http://qa3magento.dev.evozon.com/admin");
             _username.ActionSendKeys(Constants.ADMIN_USERNAME);
             _password.ActionSendKeys(Constants.ADMIN_PASSWORD);
             _loginButton.ActionClick();
+
+            _messagePopup.ActionClick();
+        }
+        public string GetOrderId()
+        {
+            return _ordersList.GetElements().First().Text;
+        }
+        public void NavigateToOrders()
+        {
+            _menuButtonsList.GetElements().First().Hover();
+            _ordersButton.GetElements().First().Click();
         }
 
         public void DeleteLastRegisteredCustomer()
         {
-            _messagePopup.ActionClick();
 
             var action = new Actions(Browser.WebDriver);
             var accessoriesElement = _customersCategory.GetElements()[3];

@@ -24,10 +24,7 @@ namespace Automation.Pages.CheckoutPage
 
         public void SelectShippingMethod()
         {   
-            /*if (_freeShippingMethodCheckbox.IsElementPresent())
-                _freeShippingMethodCheckbox.ActionClick();
-            else*/
-                _shippingMethodCheckboxList.GetElements().First().Click();
+            _shippingMethodCheckboxList.GetElements().First().Click();
 
             _continueFromShippingButton.ActionClick();
 

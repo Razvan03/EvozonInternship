@@ -34,6 +34,6 @@ namespace Automation.Tests
 
         public static CheckoutOrderReviewPage CheckoutOrderReviewPage => PageHelpers.InitPage(new CheckoutOrderReviewPage());
 
-        public static PlaceOrderSuccess PlaceOrderSuccess => PageHelpers.InitPage(new PlaceOrderSuccess());
+        public static PlaceOrderSuccessPage PlaceOrderSuccess => PageHelpers.InitPage(new PlaceOrderSuccessPage());
     }
 }

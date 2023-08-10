@@ -44,7 +44,7 @@ namespace Automation.Tests
         {
             Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
             Pages.ProductsPage.GoToProductDetailsPage(producInfo.Name);
-            var productName= Pages.ProductDetailPage.GetProductName().ToUpper();
+            var productName = Pages.ProductDetailPage.GetProductName().ToUpper();
 
             Pages.ProductDetailPage.ChangeQty(producInfo.quantity);
             Pages.ProductDetailPage.SelectItemColor(producInfo.Color);
@@ -60,6 +60,7 @@ namespace Automation.Tests
             Pages.CheckoutPaymentPage.SelectPayment();
 
             var nume = Pages.CheckoutOrderReviewPage.GetProductName();
+
             Pages.CheckoutOrderReviewPage.GetProductName().Should().Be(productName);
             Pages.CheckoutOrderReviewPage.GetProductAttributes()[0].Should().Be(producInfo.Color.ToString());
             Pages.CheckoutOrderReviewPage.GetProductAttributes()[1].Should().Be(producInfo.Size.ToString());
@@ -70,8 +71,15 @@ namespace Automation.Tests
 
             Pages.PlaceOrderSuccess.GetSuccessMessage().Should().Be(Constants.OrderPlacedWithSuccessMessage);
 
-            //Verify in Admin if the order exist!
+            var orderId = Pages.PlaceOrderSuccess.GetOrderId();
 
+            Pages.AdminPage.PerformAdminLogin();
+
+            Pages.AdminPage.NavigateToOrders();
+
+            Pages.AdminPage.GetOrderId().Should().Be(orderId);
+
+            //Improvement: Check the billing info and product info from Admin, not UI!
         }
     }
 }

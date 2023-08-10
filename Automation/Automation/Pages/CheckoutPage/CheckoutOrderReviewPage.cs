@@ -73,6 +73,7 @@ namespace Automation.Pages.CheckoutPage
         public void PlaceOrder()
         {
             _placeOrderButton.ActionClick();
+            WaitHelpers.WaitForDocumentReadyState();
         }
     }
 }
