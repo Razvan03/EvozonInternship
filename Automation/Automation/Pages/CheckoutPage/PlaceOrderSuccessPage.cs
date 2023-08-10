@@ -14,6 +14,7 @@ namespace Automation.Pages.CheckoutPage
         #region Selectors
         private readonly By _successMessage = By.CssSelector(".page-title h1");
         private readonly By _orderIdMessage = By.CssSelector(".sub-title + p");
+        
         #endregion
 
         public string GetSuccessMessage()

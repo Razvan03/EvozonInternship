@@ -19,7 +19,7 @@ namespace Automation.Pages.CheckoutPage
         private readonly By _productAttributes = By.CssSelector("td .item-options dd");
         private readonly By _placeOrderButton = By.CssSelector("[title=\"Place Order\"]");
         private readonly By _productName = By.CssSelector("tr .product-name");
-
+        private readonly By _waitSpinner = By.Id("review-please-wait");
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace Automation.Pages.CheckoutPage
         public void PlaceOrder()
         {
             _placeOrderButton.ActionClick();
-            WaitHelpers.WaitForDocumentReadyState();
+            _waitSpinner.WaitForSpinner();
         }
     }
 }
