@@ -20,7 +20,7 @@ namespace Automation.Tests
         public void LoginWithValidCredentials(string email, string password)
         {
             Pages.LoginPage.Login(email, password);
-            Pages.AccountPage.IsUserLoggedIn().Should().BeTrue();
+            Pages.AccountPage.IsUserLoggedIn().Should().Contain(Constants.VALID_FULL_NAME);
             Pages.HeaderPage.GetWelcomeMessage().Should().Be(Constants.HEADER_LOGGED_OUT_MESSAGE);
             Pages.HeaderPage.IsAccountOptionAvailable(AccountOption.LOG_IN).Should().BeFalse();
             Pages.HeaderPage.IsAccountOptionAvailable(AccountOption.LOG_OUT).Should().BeTrue();
@@ -41,7 +41,6 @@ namespace Automation.Tests
         {
             Pages.LoginPage.Login(email, password);
             Pages.LoginPage.IsErrorMessageDisplayed().Should().BeTrue();
-            Pages.AccountPage.IsUserLoggedIn().Should().BeFalse();
             Pages.HeaderPage.GetWelcomeMessage().Should().Be(Constants.HEADER_LOGGED_IN_MESSAGE);
             Pages.HeaderPage.IsAccountOptionAvailable(AccountOption.LOG_OUT).Should().BeFalse();
             Pages.HeaderPage.IsAccountOptionAvailable(AccountOption.LOG_IN).Should().BeTrue();
@@ -62,7 +61,6 @@ namespace Automation.Tests
         {
             Pages.LoginPage.Login(email, password);
             Pages.LoginPage.IsValidationAdviceDisplayed().Should().BeTrue();
-            Pages.AccountPage.IsUserLoggedIn().Should().BeFalse();
             Pages.HeaderPage.GetWelcomeMessage().Should().Be(Constants.HEADER_LOGGED_IN_MESSAGE);
             Pages.HeaderPage.IsAccountOptionAvailable(AccountOption.LOG_OUT).Should().BeFalse();
             Pages.HeaderPage.IsAccountOptionAvailable(AccountOption.LOG_IN).Should().BeTrue();

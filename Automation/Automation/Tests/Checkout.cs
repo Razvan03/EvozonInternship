@@ -42,14 +42,13 @@ namespace Automation.Tests
         [TestMethod]
         public void PlaceOrderWithoutAccount(BillingInformation billingInfo, ProductInfo producInfo)
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
             Pages.ProductsPage.GoToProductDetailsPage(producInfo.Name);
-            var productName = Pages.ProductDetailPage.GetProductName().ToUpper();
 
-            Pages.ProductDetailPage.ChangeQty(producInfo.quantity);
-            Pages.ProductDetailPage.SelectItemColor(producInfo.Color);
-            Pages.ProductDetailPage.SelectItemSize(producInfo.Size);
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.ChangeQty(producInfo.quantity);
+            Pages.ProductDetailsPage.SelectItemColor(producInfo.Color);
+            Pages.ProductDetailsPage.SelectItemSize(producInfo.Size);
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.ProceedToCheckout();
 
@@ -59,9 +58,7 @@ namespace Automation.Tests
             Pages.CheckoutShippingMethodPage.SelectShippingMethod();
             Pages.CheckoutPaymentPage.SelectPayment();
 
-            var nume = Pages.CheckoutOrderReviewPage.GetProductName();
-
-            Pages.CheckoutOrderReviewPage.GetProductName().Should().Be(productName);
+            Pages.CheckoutOrderReviewPage.GetProductName().Should().Be(producInfo.Name.ToUpper());
             Pages.CheckoutOrderReviewPage.GetProductAttributes()[0].Should().Be(producInfo.Color.ToString());
             Pages.CheckoutOrderReviewPage.GetProductAttributes()[1].Should().Be(producInfo.Size.ToString());
 

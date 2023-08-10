@@ -18,7 +18,7 @@ namespace Automation.Tests
         [TestMethod]
         public void RegisterValidTest(string firstName, string middleName, string lastName, string email)
         {
-            Pages.HomePage.GoToAccountDropdownOption(AccountOption.REGISTER);
+            Pages.HeaderPage.GoToAccountDropdownOption(AccountOption.REGISTER);
             var helloText = "Hello, " + firstName + " " + middleName + " " + lastName + "!";
             Pages.RegisterPage.InsertCredentials(firstName, middleName, lastName, email);
             Pages.RegisterPage.SubmitRegister();
