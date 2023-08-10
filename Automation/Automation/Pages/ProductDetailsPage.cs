@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MsTests.Helpers.Enums;
+﻿using MsTests.Helpers.Enums;
 using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
@@ -22,7 +17,7 @@ namespace Automation.Pages
         
         #endregion
 
-        public void ChangeQty()
+        public void ChangeQuantity()
         {
             _productQty.ActionSendKeys("2");
         }

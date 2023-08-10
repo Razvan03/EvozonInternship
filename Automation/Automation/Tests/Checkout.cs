@@ -1,10 +1,5 @@
 ﻿using Automation.Helpers;
 using MsTests.Helpers.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation.Tests
 {
@@ -14,15 +9,12 @@ namespace Automation.Tests
         [TestMethod]
         public void ProceedToCheckoutWithoutAccount()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
             Pages.ProductsPage.GoToProductDetailsPage("Chelsea Tee");
-
-            Pages.ProductDetailsPage.ChangeQty();
-
-            //productAddedToCart = Pages.ProductDetailsPage.GetProductName();
-
+            
             Pages.ProductDetailsPage.SelectItemColor(Color.Black);
             Pages.ProductDetailsPage.SelectItemSize(ClothesSize.M);
+            Pages.ProductDetailsPage.ChangeQuantity();
             Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.ProceedToCheckout();

@@ -1,12 +1,4 @@
-﻿using Automation.Helpers;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Helpers;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using NsTestFrameworkUI.Pages;
 using NsTestFrameworkUI.Helpers;
 
