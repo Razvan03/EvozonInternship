@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Automation.Helpers.Enums;
 
 namespace Automation.Tests
 {
@@ -54,6 +55,47 @@ namespace Automation.Tests
 
             Pages.CheckoutBillingPage.ContinueToCheckoutAsGuest();
             Pages.CheckoutBillingPage.InsertBillingInformation(billingInfo);
+            Pages.CheckoutShippingPage.InsertShippingInformation();
+            Pages.CheckoutShippingMethodPage.SelectShippingMethod();
+            Pages.CheckoutPaymentPage.SelectPayment();
+
+            Pages.CheckoutOrderReviewPage.GetProductName().Should().Be(producInfo.Name.ToUpper());
+            Pages.CheckoutOrderReviewPage.GetProductAttributes()[0].Should().Be(producInfo.Color.ToString());
+            Pages.CheckoutOrderReviewPage.GetProductAttributes()[1].Should().Be(producInfo.Size.ToString());
+
+            Pages.CheckoutOrderReviewPage.GetBillingInformation().Should().BeEquivalentTo(billingInfo, options => options.Excluding(b => b.Email));
+
+            Pages.CheckoutOrderReviewPage.PlaceOrder();
+
+            Pages.PlaceOrderSuccess.GetSuccessMessage().Should().Be(Constants.OrderPlacedWithSuccessMessage);
+
+            var orderId = Pages.PlaceOrderSuccess.GetOrderId();
+
+            Pages.AdminPage.PerformAdminLogin();
+
+            Pages.AdminPage.NavigateToOrders();
+
+            Pages.AdminPage.GetOrderId().Should().Be(orderId);
+
+            //Improvement: Check the billing info and product info from Admin, not UI!
+        }
+
+        public void PlaceOrderWithAccount(BillingInformation billingInfo, ProductInfo producInfo)
+        {
+            Pages.HeaderPage.GoToAccountDropdownOption(AccountOption.LOG_IN);
+            Pages.LoginPage.Login(Constants.VALID_EMAIL, Constants.VALID_PASSWORD);
+
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+            Pages.ProductsPage.GoToProductDetailsPage(producInfo.Name);
+
+            Pages.ProductDetailsPage.ChangeQty(producInfo.quantity);
+            Pages.ProductDetailsPage.SelectItemColor(producInfo.Color);
+            Pages.ProductDetailsPage.SelectItemSize(producInfo.Size);
+            Pages.ProductDetailsPage.AddProductToCart();
+
+            Pages.CartPage.ProceedToCheckout();
+
+            Pages.CheckoutBillingPage.SelectShipToThisAddress();
             Pages.CheckoutShippingPage.InsertShippingInformation();
             Pages.CheckoutShippingMethodPage.SelectShippingMethod();
             Pages.CheckoutPaymentPage.SelectPayment();

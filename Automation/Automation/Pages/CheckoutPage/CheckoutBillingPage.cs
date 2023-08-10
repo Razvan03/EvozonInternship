@@ -30,6 +30,8 @@ namespace Automation.Pages.CheckoutPage
 
         private readonly By _waitSpinner = By.CssSelector("#billing-please-wait[style=\"\"]");
 
+        private readonly By _shipToThisAddressCheckbox = By.CssSelector("[for=\"billing:use_for_shipping_yes\"]");
+
         
 
         #endregion
@@ -56,6 +58,13 @@ namespace Automation.Pages.CheckoutPage
             _continueToNextStepButton.ActionClick();
 
             _waitSpinner.WaitForSpinner();
+        }
+
+        public void SelectShipToThisAddress()
+        {
+            _shipToThisAddressCheckbox.ActionClick();
+            _continueToNextStepButton.ActionClick();
+
         }
     }
 }
