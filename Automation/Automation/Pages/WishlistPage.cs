@@ -1,12 +1,4 @@
-﻿using Automation.Helpers;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Helpers;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using NsTestFrameworkUI.Pages;
 using NsTestFrameworkUI.Helpers;
 
@@ -16,37 +8,31 @@ namespace Automation.Pages
     {
 
         #region Selectors
+
         private readonly By _wishlistProductNames = By.CssSelector("#wishlist-table tbody tr h3 a");
         private readonly By _wishlistRemoveButtons = By.CssSelector("#wishlist-table tbody tr td[class*=\"remove\"] a");
-        private readonly By _briefcaseProduct = By.CssSelector("#wishlist-table tbody tr h3 a[title=\"Broad St. Flapover Briefcase\"]");
-        private readonly By _confirmMessage = By.CssSelector("li.success-msg span");
+        private readonly By _confirmationMessage = By.CssSelector("li.success-msg span");
+
         #endregion
 
-        public string GetConfirmMessage()
+        public string GetProductAddedToWishlistConfirmationMessage()
         {
-            return _confirmMessage.GetText();
-        }
-
-        public bool IsConfirmMessageTrue(string productAdded)
-        {
-            return _confirmMessage.GetText().ToUpper().Contains(productAdded);
+            return _confirmationMessage.GetText();
         }
 
         public bool IsProductInWishlist(string product)
         {
             var wishlistElementsName = _wishlistProductNames.GetElements();
-            return wishlistElementsName.Any(i => i.Text.Equals(product));
+            return wishlistElementsName.Any(i => i.Text.Equals(product.ToUpper()));
 
         }
 
-        public void RemoveProductFromWishlist(string productName) 
+        public void RemoveProductFromWishlist(string productName)
         {
-            
             var wishlistElementsName = _wishlistProductNames.GetElements();
-
             var removeButtons = _wishlistRemoveButtons.GetElements();
 
-            var elementToRemove = wishlistElementsName.First(i => i.Text == productName);
+            var elementToRemove = wishlistElementsName.First(i => i.Text.Equals(productName.ToUpper()));
             var index = wishlistElementsName.IndexOf(elementToRemove);
 
             removeButtons[index].Click();
@@ -63,6 +49,14 @@ namespace Automation.Pages
             WaitHelpers.WaitForDocumentReadyState();
         }
 
-        //commit
+        public void RemoveAllProductsFromWishlist()
+        {
+            while (_wishlistRemoveButtons.GetElements().Count > 0)
+            {
+                _wishlistRemoveButtons.ActionClick();
+                Browser.WebDriver.SwitchTo().Alert().Accept();
+            }
+        }
     }
 }
+

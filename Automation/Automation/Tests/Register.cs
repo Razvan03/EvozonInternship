@@ -1,11 +1,4 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Automation.Helpers;
 using Automation.Helpers.Enums;
 using NsTestFrameworkUI.Helpers;

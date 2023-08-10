@@ -14,7 +14,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
 
             productName = "Chelsea Tee";
 
@@ -32,7 +32,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartDigitalProductTest()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
 
             productName = "A Tale of Two Cities";
 
@@ -40,9 +40,9 @@ namespace Automation.Tests
 
             Pages.ProductDetailPage.ChangeQty(2);
 
-            Pages.ProductDetailPage.CheckDigitalProduct();
+            Pages.ProductDetailsPage.CheckDigitalProduct();
 
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
 
@@ -53,7 +53,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartSimpleProductTest()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
             productName = "Broad St. Flapover Briefcase";
 
@@ -61,7 +61,7 @@ namespace Automation.Tests
 
             Pages.ProductDetailPage.ChangeQty(2);
 
-            Pages.ProductDetailPage.AddProductToCart();
+            Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
 

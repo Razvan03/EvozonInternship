@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Helpers;
+﻿using Automation.Helpers;
 using FluentAssertions;
 using MsTests.Helpers.Enums;
 
@@ -15,27 +10,27 @@ namespace Automation.Tests
         [TestMethod]
         public void GoThroughMainCategories()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
             Pages.CategoryPage.IsCategoryTitleDisplayed().Should().BeTrue();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.WOMEN);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.VIEW_ALL);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.VIEW_ALL);
             Pages.CategoryPage.IsCategoryTitleDisplayed();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.MEN);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.ACCESSORIES, Subcategory.Accessories.VIEW_ALL);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.ACCESSORIES, Subcategory.Accessories.VIEW_ALL);
             Pages.CategoryPage.IsCategoryTitleDisplayed();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.ACCESSORIES);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.VIEW_ALL);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.VIEW_ALL);
             Pages.CategoryPage.IsCategoryTitleDisplayed();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.HOME_AND_DECOR);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.SALE, Subcategory.Sale.VIEW_ALL);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.SALE, Subcategory.Sale.VIEW_ALL);
             Pages.CategoryPage.IsCategoryTitleDisplayed();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.SALE);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.VIP, null);
             Pages.CategoryPage.IsCategoryTitleDisplayed();
             Pages.CategoryPage.IsCorrectCategoryTitleDisplayed(Category.VIP);
         }
@@ -43,23 +38,23 @@ namespace Automation.Tests
         [TestMethod]
         public void GoThroughWomenSubcategories()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.VIEW_ALL);
             Pages.ProductsPage.IsSubcategoryTitleDisplayed();
             Pages.ProductsPage.IsCorrectSubcategoryTitleDisplayed(Category.WOMEN);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.NEW_ARRIVALS);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.NEW_ARRIVALS);
             Pages.ProductsPage.IsSubcategoryTitleDisplayed();
             Pages.ProductsPage.IsCorrectSubcategoryTitleDisplayed(Subcategory.Women.NEW_ARRIVALS);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.TOPS_AND_BLOUSES);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.TOPS_AND_BLOUSES);
             Pages.ProductsPage.IsSubcategoryTitleDisplayed();
             Pages.ProductsPage.IsCorrectSubcategoryTitleDisplayed(Subcategory.Women.TOPS_AND_BLOUSES);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.PANTS_AND_DENIM);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.PANTS_AND_DENIM);
             Pages.ProductsPage.IsSubcategoryTitleDisplayed();
             Pages.ProductsPage.IsCorrectSubcategoryTitleDisplayed(Subcategory.Women.PANTS_AND_DENIM);
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.DRESSES_AND_SKIRTS);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.WOMEN, Subcategory.Women.DRESSES_AND_SKIRTS);
             Pages.ProductsPage.IsSubcategoryTitleDisplayed();
             Pages.ProductsPage.IsCorrectSubcategoryTitleDisplayed(Subcategory.Women.DRESSES_AND_SKIRTS);
         }
