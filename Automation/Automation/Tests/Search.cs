@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Helpers;
+﻿using Automation.Helpers;
 using FluentAssertions;
 
 namespace Automation.Tests
@@ -14,7 +9,7 @@ namespace Automation.Tests
         [TestMethod]
         public void SearchResultsAreDisplayed()
         {
-            Pages.HomePage.PerformSearchForKeyword("red");
+            Pages.HeaderPage.Search("red");
             Pages.SearchResultsPage.IsKeywordResultsMessageDisplayed().Should().BeTrue();
         }
     }

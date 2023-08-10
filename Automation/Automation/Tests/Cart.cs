@@ -14,7 +14,7 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartConfigurableProductTest()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.MEN, Subcategory.Men.TEES_KNITS_AND_POLOS);
 
             productName = "Chelsea Tee";
 
@@ -22,7 +22,7 @@ namespace Automation.Tests
 
             Pages.ProductDetailsPage.SelectItemColor(Color.Black);
             Pages.ProductDetailsPage.SelectItemSize(ClothesSize.M);
-            Pages.ProductDetailsPage.ChangeQty();
+            Pages.ProductDetailsPage.ChangeQuantity();
             Pages.ProductDetailsPage.AddProductToCart();
 
             Pages.CartPage.IsConfirmMessageTrue(productName).Should().BeTrue();
@@ -32,13 +32,13 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartDigitalProductTest()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.HOME_AND_DECOR, Subcategory.HomeAndDecor.BOOKS_AND_MUSIC);
 
             productName = "A Tale of Two Cities";
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailsPage.ChangeQty();
+            Pages.ProductDetailsPage.ChangeQuantity();
 
             Pages.ProductDetailsPage.CheckDigitalProduct();
 
@@ -53,13 +53,13 @@ namespace Automation.Tests
         [TestMethod]
         public void AddtoCartSimpleProductTest()
         {
-            Pages.HomePage.GoToSubcategoryFromDropdown(Category.VIP, null);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(Category.VIP, null);
 
             productName = "Broad St. Flapover Briefcase";
 
             Pages.ProductsPage.GoToProductDetailsPage(productName);
 
-            Pages.ProductDetailsPage.ChangeQty();
+            Pages.ProductDetailsPage.ChangeQuantity();
 
             Pages.ProductDetailsPage.AddProductToCart();
 

@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Helpers;
-using Automation.Helpers.Enums;
+﻿using Automation.Helpers.Enums;
 using MsTests.Helpers;
 using MsTests.Helpers.Enums;
 using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 
 namespace Automation.Pages
 {
-    public class Homepage
+    public class HeaderPage
     {
         #region Selectors
 
@@ -48,23 +41,19 @@ namespace Automation.Pages
 
         public void GoToSubcategoryFromDropdown(Category categoryTitle, Enum subcategoryTitle)
         {
-            // get all category elements
             var categories = _categoryList.GetElements();
-            // find the category with the matching title
             var category = categories.FirstOrDefault(c => c.Text == categoryTitle.GetDescription());
             if (category == null)
             {
                 throw new ArgumentException($"No category found with title: {categoryTitle}");
             }
             
-            // the vip  category doesn't have any subcategories
             if (categoryTitle == Category.VIP)
             {
                 category.Click();
                 return;
             }
 
-            // hover over the category
             category.Hover();
 
             var subcategories = _subcategoryList.GetElements();
@@ -76,7 +65,7 @@ namespace Automation.Pages
             subcategory.Click();
         }
 
-        public void PerformSearchForKeyword(string keyword)
+        public void Search(string keyword)
         {
             _searchField.ActionSendKeys(keyword);
             _searchButton.ActionClick();

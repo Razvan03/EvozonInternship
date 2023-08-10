@@ -1,18 +1,8 @@
 ﻿using FluentAssertions;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Automation.Helpers;
 using Automation.Helpers.Enums;
 using MsTests.Helpers.Enums;
 
-/*[assembly: Parallelize(Workers = 4,
-    Scope = ExecutionScope.MethodLevel)]*/
 namespace Automation.Tests
 {
     [TestClass]
@@ -23,8 +13,8 @@ namespace Automation.Tests
         {
             base.Before();
 
-            Pages.HomePage.GoToAccountDropdownOption(AccountOption.LOG_IN);
-            Pages.LoginPage.InsertCredentialsAndLogin(Constants.VALID_EMAIL, Constants.VALID_PASSWORD);
+            Pages.HeaderPage.GoToAccountDropdownOption(AccountOption.LOG_IN);
+            Pages.LoginPage.Login(Constants.VALID_EMAIL, Constants.VALID_PASSWORD);
         }
 
         public static IEnumerable<object[]> WishlistData()
@@ -42,10 +32,10 @@ namespace Automation.Tests
         {
             TestContext.Properties["ProductName"] = productName;
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(category, subcategory);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(category, subcategory);
             Pages.ProductsPage.AddProductToWishlist(productName);
 
-            Pages.WishlistPage.GetProductAddedToWishlistConfirmationMessage().Contains(productName).Should().BeTrue();
+            Pages.WishlistPage.GetProductAddedToWishlistConfirmationMessage().Should().Contain(productName);
             Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
         }
 
@@ -55,11 +45,11 @@ namespace Automation.Tests
         {
             TestContext.Properties["ProductName"] = productName;
 
-            Pages.HomePage.GoToSubcategoryFromDropdown(category, subcategory);
+            Pages.HeaderPage.GoToSubcategoryFromDropdown(category, subcategory);
             Pages.ProductsPage.GoToProductDetailsPage(productName);
             Pages.ProductDetailsPage.AddProductToWishlist();
 
-            Pages.WishlistPage.GetProductAddedToWishlistConfirmationMessage().Contains(productName).Should().BeTrue();
+            Pages.WishlistPage.GetProductAddedToWishlistConfirmationMessage().Should().Contain(productName);
             Pages.WishlistPage.IsProductInWishlist(productName).Should().BeTrue();
         }
         

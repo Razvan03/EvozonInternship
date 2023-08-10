@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation.Helpers;
-using NsTestFrameworkUI.Pages;
+﻿using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
-using NsTestFrameworkUI.Helpers;
 
 namespace Automation.Pages
 {
@@ -22,7 +15,7 @@ namespace Automation.Pages
 
         #endregion
 
-        public void InsertCredentialsAndLogin(string userEmail, string password)
+        public void Login(string userEmail, string password)
         {
             _emailField.ActionSendKeys(userEmail);
             _passwordField.ActionSendKeys(password);
